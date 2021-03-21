@@ -6,17 +6,26 @@ import { useQuery } from "react-query";
 import { getTags } from "../helpers/requests";
 import { useParams } from "react-router-dom";
 import { getTagById } from "../helpers/requests";
+import { useHistory } from "react-router-dom";
 
 const TagsPage = () => {
   // const { id } = useParams();
   // const { data: tag } = useQuery(["tag", id], () => getTagById(id));
   // console.log(tag); 
 
+  const location = useHistory().location;
+  const id = location.pathname.split('/')[2];
+  console.log(id); 
+
   const { data: tags } = useQuery("tags", getTags);
   //console.log(tags); 
   
-  const data = (tags[0].Services);  //при обновлении страницы ругается на [0]
+  const data = (tags?.filter((id) => tags.id == id).Services); 
+  //const data = (tags[id].Services); 
   console.log(data);
+  
+  tags?.filter((item) => item.id === id).map((item) => item);
+  //console.log(tags);
 
   return (
     <>
@@ -32,9 +41,9 @@ const TagsPage = () => {
               <RectRightWhite />
             </div>
             <div className="flex flex-wrap justify-between">
-              {data?.map((item, idx) => (
+              {/* {data?.map((item, idx) => (
                 <CategoryItem item={item} key={idx} />
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
