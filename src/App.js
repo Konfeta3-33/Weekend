@@ -14,6 +14,7 @@ import Contacts from "./components/contacts/Contacts.js"
 import OrderPage from "./pages/OrderPage"
 import Footer from "./components/footer/Footer.js"
 import logo from "./images/logo.png"
+import TestPage from "./pages/TestPage"
 
 const queryClient = new QueryClient()
 
@@ -48,6 +49,7 @@ function App() {
                         />
                         <Route path="/contacts" component={Contacts} />
                         <Route path="/order" component={OrderPage} />
+                        <Route path="/test" component={TestPage} />
                     </Switch>
                     <Footer />
                 </Router>

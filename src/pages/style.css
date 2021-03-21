@@ -1,0 +1,8 @@
+.swiper-slide {
+    border: 3px solid transparent;
+    border-radius: 4px;
+}
+
+.swiper-slide-active {
+    border: 3px solid #00d0a9;
+}
