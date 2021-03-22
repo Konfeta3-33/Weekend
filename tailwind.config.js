@@ -16,6 +16,7 @@ module.exports = {
         Crimson: "#BD467F",
         Gray: "#979797",
         DarkGreen: "#00ad90",
+        BlackGray: "#212121"
       }),
       backgroundColor: (theme) => ({
         Sea: "#00CCA9",
@@ -30,6 +31,7 @@ module.exports = {
         Orange: "#FF9F39",
         Blue: "#466FBD",
         Crimson: "#BD467F",
+        default: "#979797",
       }),
       borderRadius: {
         "10px": "10px",
@@ -51,15 +53,14 @@ module.exports = {
     fontFamily: {
       sans: ["Montserrat", "ui-sans-serif", "system-ui"],
     },
-  },
-  variants: {
-    extend: {
-      textColor: ["active"],
-      backgroundColor: ["active"],
-      borderColor: ["active"],
-      borderRadius: ["hover", "focus"],
-      fill: ['hover', 'focus'],
+    variants: {
+        extend: {
+            textColor: ["active"],
+            backgroundColor: ["active"],
+            borderColor: ["active"],
+            borderRadius: ["hover", "focus"],
+            fill: ["hover", "focus"],
+        },
     },
-  },
-  plugins: [],
-};
+    plugins: [],
+}
