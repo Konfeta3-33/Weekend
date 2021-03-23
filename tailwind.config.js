@@ -45,6 +45,7 @@ module.exports = {
       },
       maxWidth: {
         25: "100px",
+        60: "250px",
       },
       width: {
         95: "375px"
