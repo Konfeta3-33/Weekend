@@ -10,7 +10,7 @@ const SubCatItem = ({ item, onClick }) => {
         <img src={`${baseUrl}/images/${image}`} className="mb-2.5 rounded-xl"
              style={{ width: 55, height: 55 }}/>
       </div>
-      <p className="max-w-25 text-center text-Gray text-xs font-semibold">
+      <p className="max-w-25 text-center text-BlackGray text-sm font-semibold">
         {name}
       </p>
     </div>
