@@ -4,11 +4,14 @@ import RectRightWhite from "../components/Category/images/main/RectRightWhite";
 import CategoryItem from "../components/Category/CategoryItem";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { getTagById } from "../helpers/requests";
+import { getTagById, getGroups } from "../helpers/requests";
 
 const TagsPage = () => {
   const { id } = useParams();
   const { data: tag } = useQuery(["tag", id], () => getTagById(id));
+
+  const { data: groups } = useQuery("groups", () => getGroups()); 
+  console.log("groups: ", groups);
 
   if (!tag) return null;
   const { name, Services } = tag;
