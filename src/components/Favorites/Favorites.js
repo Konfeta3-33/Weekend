@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import FavoritesItem from "./FavoritesItem";
 
+import testItem from "./testItem";
+
 const Favorites = () => {
+  const [count, setCount] = useState(4);
+
+   const onOpen = () => {
+     if (count < testItem.length) {
+      setCount(count + 4);
+     }
+    
+   };
+
     return (
         <div className="w-95 md:w-full xl:w-full mx-auto flex flex-col text-center -mb-2.5">
         <div className="bg-category sm:bg-Sea bg-no-repeat bg-cover bg-center">
@@ -20,10 +31,12 @@ const Favorites = () => {
               </div>
             </div>
             <div className="flex flex-wrap justify-between">
-              <FavoritesItem />
+              {testItem.slice(0, count).map((item, id) => (
+                <FavoritesItem item={item} key={id} />
+            ))}
             </div>
             <div>
-              <button className="focus:outline-none rounded-xl border border-gray-50 w-20 text-center py-2.5 font-medium text-base text-gray-50">Еще</button>
+              <button onClick={onOpen} className="focus:outline-none rounded-xl border border-gray-50 w-20 text-center py-2.5 font-medium text-base text-gray-50">Еще</button>
             </div>
           </div>
         </div>
