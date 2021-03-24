@@ -4,7 +4,7 @@ import logo from "./footerImg/Weekend лого Heart W 1.png";
 
 const Footer = () => {
   return (
-    <div className="w-96 md:w-full xl:w-full mx-auto text-center">
+    <div className="w-95 md:w-full xl:w-full mx-auto text-center">
         <div className="bg-footer sm:bg-lightGreen bg-cover bg-no-repeat pb-5 pt-10">
           <div className="flex justify-center pb-5">
             <div className="w-44 flex justify-between items-center md:ml-12 text-center">
