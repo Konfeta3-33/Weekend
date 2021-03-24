@@ -15,6 +15,7 @@ const EventPage = () => {
 
   return (
     <>
+      <h2 className="px-16 mb-5 text-xl font-semibold text-center">{name}</h2>
       <Specific Adresses={Adresses} price={price} worktime={worktime} limits={limits} Tags={Tags}/>
     </>
   );
