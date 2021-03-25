@@ -3,10 +3,9 @@ import RectLeftWhite from "./images/main/RectLeftWhite";
 import RectRightWhite from "./images/main/RectRightWhite";
 import CategoryItem from "./CategoryItem";
 
-const Category = ({ category, filteredCategory, toggle }) => {
+const Category = ({ category, filteredCategory, toggle, toggleFavorites, favorites }) => {
   if (!category) return null;
   const { name, services } = category;
-  console.log("filteredCategory:", filteredCategory);
 
   return (
     <div className="w-95 md:w-full xl:w-full mx-auto flex flex-col text-center -mb-2.5">
@@ -20,9 +19,9 @@ const Category = ({ category, filteredCategory, toggle }) => {
           </div>
           <div className="flex flex-wrap justify-between">
             {toggle ? filteredCategory.map((item, idx) => (
-              <CategoryItem item={item} key={idx}/>
+              <CategoryItem item={item} key={idx} favorites={favorites} toggleFavorites={() => toggleFavorites(item)}/>
             )) : services?.map((item, idx) => (
-              <CategoryItem item={item} key={idx}/>
+              <CategoryItem item={item} key={idx} favorites={favorites} toggleFavorites={() => toggleFavorites(item)}/>
             ))}
           </div>
         </div>
