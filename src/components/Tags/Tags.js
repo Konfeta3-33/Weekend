@@ -2,7 +2,7 @@ import TagBlock from "./TagBlock";
 import RectLeft from "../../images/icons/RectLeft";
 import RectRight from "../../images/icons/RectRight";
 
-const Tags = () => {
+const Tags = ({ groups }) => {
   return (
     <div className="px-4 w-95 mx-auto md:w-2/3 xl:w-1/2">
       <div className="mb-6 flex justify-center items-center">
@@ -12,9 +12,9 @@ const Tags = () => {
         </h2>
         <RectRight />
       </div>
-      <TagBlock title="Популярные" cat={1} />
-      <TagBlock title="Развитие навыков" cat={2} />
-      <TagBlock title="Локация" cat={3} />
+      {groups?.map((item, idx) => (
+          <TagBlock item={item} key={idx} title={item.name} color={item.color} Tags={item.Tags}/>
+      ))}
     </div>
   );
 };
