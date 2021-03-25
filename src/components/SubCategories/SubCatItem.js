@@ -11,7 +11,7 @@ const SubCatItem = ({ item, onClick }) => {
           style={{ width: 55, height: 55 }}
         />
       </div>
-      <p className="max-w-25 mt-2 text-center text-Gray text-xs font-semibold">
+      <p className="max-w-25 mt-2.5 text-center text-BlackGray text-sm font-semibold">
         {name}
       </p>
     </div>

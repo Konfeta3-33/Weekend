@@ -8,11 +8,11 @@ const ShowTags = ({ visibility, cat }) => {
   return (
     <div>
       {visibility ? (
-        <div className="flex flex-wrap mb-3">
+        <div className="flex flex-wrap">
           {tags?.map((item, idx) => {
             return (
               // item.cat === cat && (
-                  <div key={idx} className="mr-5 mb-5">
+                  <div key={idx} className="mr-5 mb-7">
                     <TagItem item={item} cat={cat} />
                   </div>
               // )

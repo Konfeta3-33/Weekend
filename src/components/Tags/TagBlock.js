@@ -11,9 +11,9 @@ const TagBlock = ({ title, cat }) => {
   };
 
   return (
-    <div className="text-Gray">
+    <div className="text-BlackGray">
       <p
-        className="mb-3 text-Gray text-base font-medium cursor-pointer"
+        className="mb-4 text-base font-medium cursor-pointer"
         onClick={toggleVisibleTags}
       >
         {title} &nbsp;
