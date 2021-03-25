@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form"
 import Input from "./Input"
 import IconCheckbox from "./icons/IconCheckbox.js"
 
-const Order = (props) => {
-    const { postOrder, data } = props
+const Order = ({ postOrder }) => {
     const { register, handleSubmit, errors, trigger } = useForm()
     const [checked, setChecked] = useState(false)
 
@@ -33,7 +32,6 @@ const Order = (props) => {
                 <Input
                     name="name"
                     trigger={trigger}
-                    defaultValue={data.name}
                     register={register}
                     error={errors.name}
                     title="Имя"
@@ -50,7 +48,6 @@ const Order = (props) => {
                 <Input
                     name="phone"
                     trigger={trigger}
-                    defaultValue={data.phone}
                     register={register}
                     title="телефон"
                     error={errors.phone}
@@ -74,7 +71,6 @@ const Order = (props) => {
                 <Input
                     trigger={trigger}
                     name="email"
-                    defaultValue={data.email}
                     register={register}
                     title="почта"
                     error={errors.email}
@@ -91,7 +87,6 @@ const Order = (props) => {
                 <Input
                     trigger={trigger}
                     name="date"
-                    defaultValue={data.date}
                     register={register}
                     title="дата и время"
                     error={errors.date}
@@ -106,7 +101,6 @@ const Order = (props) => {
                 <Input
                     trigger={trigger}
                     name="address"
-                    defaultValue={data.address}
                     register={register}
                     title="адрес"
                     error={errors.address}
@@ -121,7 +115,6 @@ const Order = (props) => {
                 <Input
                     trigger={trigger}
                     name="persons"
-                    defaultValue={data.persons}
                     register={register}
                     title="количество детей"
                 />
@@ -129,7 +122,6 @@ const Order = (props) => {
                 <Input
                     trigger={trigger}
                     name="parents"
-                    defaultValue={data.parents}
                     register={register}
                     title="количество взрослых"
                 />
@@ -160,4 +152,4 @@ const Order = (props) => {
     )
 }
 
-export default Order
+export default React.memo(Order)

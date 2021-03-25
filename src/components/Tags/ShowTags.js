@@ -1,26 +1,21 @@
-import { Link } from "react-router-dom";
 import TagItem from "./TagItem";
-import { tagsItems } from "./tagsItems";
+import { useQuery } from "react-query";
+import { getTags } from "../../helpers/requests";
 
 const ShowTags = ({ visibility, cat }) => {
+  const { data: tags } = useQuery("tags", getTags);
+
   return (
     <div>
       {visibility ? (
-        <div className={`flex flex-wrap mb-3
-        ${
-          cat === 1
-            ? "justify-between md:justify-start"
-            : ""
-        } `}>
-          {tagsItems.map((item, idx) => {
+        <div className="flex flex-wrap">
+          {tags?.map((item, idx) => {
             return (
-              item.cat === cat && (
-                <Link to="/tags" key={idx}>
-                  <div className="mr-5 mb-5">
-                    <TagItem item={item} key={item.id} cat={item.cat} />
+              // item.cat === cat && (
+                  <div key={idx} className="mr-5 mb-7">
+                    <TagItem item={item} cat={cat} />
                   </div>
-                </Link>
-              )
+              // )
             );
           })}
         </div>

@@ -2,21 +2,10 @@ import React, { useCallback, useState, useLayoutEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { postOrder } from "../helpers/requests"
 import Order from "../components/Order/Order"
-import Modal from "../components/Order/Modal"
-
-const initialState = {
-    name: "",
-    phone: null,
-    address: "",
-    date: "",
-    persons: null,
-    email: "",
-    parents: null,
-}
+import Modal from "../components/Modal"
 
 const OrderPage = () => {
     const history = useHistory()
-    const [data, setData] = useState(initialState)
     const [response, setResponse] = useState({})
     const [active, setActive] = useState(false)
     const [message, setMessage] = useState("")
@@ -42,11 +31,10 @@ const OrderPage = () => {
 
     const handlePostOrder = useCallback(
         async (newData) => {
-            setData(initialState)
             const result = await postOrder(newData)
             setResponse(result)
         },
-        [data]
+        [response]
     )
 
     const hadleSetActiveMolal = useCallback(
@@ -58,17 +46,15 @@ const OrderPage = () => {
 
     return (
         <>
-            <Order
-                postOrder={handlePostOrder}
-                data={data}
-                response={response}
-                history={history}
-            />
-            <Modal
-                active={active}
-                setActive={hadleSetActiveMolal}
-                message={message}
-            />
+            <Order postOrder={handlePostOrder} />
+            <Modal active={active} setActive={hadleSetActiveMolal}>
+                <div className="max-w-60 py-7 text-center text-base font-medium">
+                    {message === "Заявка успешно создана"
+                    ? `Ваша заявка успешно отправлена! Скоро мы свяжемся с
+                    вами. Спасибо!`
+                    : message}
+                </div> 
+            </Modal>
         </>
     )
 }
