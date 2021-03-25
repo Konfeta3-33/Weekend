@@ -13,7 +13,7 @@ const Tags = ({ groups }) => {
         <RectRight />
       </div>
       {groups?.map((item, idx) => (
-          <TagBlock item={item} key={idx} title={item.name} color={item.color} Tags={item.Tags}/>
+        <TagBlock item={item} key={idx} />
       ))}
     </div>
   );
