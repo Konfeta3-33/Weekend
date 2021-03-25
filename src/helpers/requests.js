@@ -33,7 +33,6 @@ export const getCategoryById = (id) => getData(`${baseUrl}/api/categories/${id}`
 export const getSubCategories = () => getData(`${baseUrl}/api/subcategories`)
 export const getSubCategoryById = (id) => getData(`${baseUrl}/api/subcategories/${id}`)
 export const getServiceById = (id) => getData(`${baseUrl}/api/services/${id}`)
-export const getTags = () => getData(`${baseUrl}/api/tags`);
 export const getTagById = (id) => getData(`${baseUrl}/api/tags/${id}`);
 export const getGroups = () => getData(`${baseUrl}/api/groups`);
 export const getSubCategoriesFull = (arrIds) => {

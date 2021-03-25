@@ -4,25 +4,22 @@ import RectRightWhite from "../components/Category/images/main/RectRightWhite";
 import CategoryItem from "../components/Category/CategoryItem";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { getTagById, getGroups } from "../helpers/requests";
+import { getTagById } from "../helpers/requests";
 
 const TagsPage = () => {
   const { id } = useParams();
   const { data: tag } = useQuery(["tag", id], () => getTagById(id));
 
-  const { data: groups } = useQuery("groups", () => getGroups()); 
-  console.log("groups: ", groups);
-
   if (!tag) return null;
-  const { name, Services } = tag;
-
-  console.log("tag: ", tag);
+  const { name, Services, GroupId } = tag;
 
   return (
     <>
       <div className="w-95 md:w-full xl:w-full mx-auto -mb-2.5 flex flex-col text-center">
-        <div className="p-4 bg-tagsBlue bg-no-repeat bg-cover bg-center">
-        {/* bg-category tagsOrange */}
+        <div 
+          className={`p-4 bg-no-repeat bg-cover bg-center
+          ${GroupId === 1 ? "bg-tagsOrange" : `${GroupId === 2 ? "bg-tagsBlue" : "bg-category"}`} `}
+        >
           <div className="flex flex-wrap justify-center flex-col">
             <div className="w-60 mt-4 mb-5 mx-auto flex justify-center items-center">
               <RectLeftWhite />
