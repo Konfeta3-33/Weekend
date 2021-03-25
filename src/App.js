@@ -15,7 +15,6 @@ import OrderPage from "./pages/OrderPage";
 import Favorites from "./components/Favorites/Favorites.js";
 import Footer from "./components/footer/Footer.js";
 import logo from "./images/logo.png";
-import { CookiesProvider } from 'react-cookie';
 
 const queryClient = new QueryClient()
 

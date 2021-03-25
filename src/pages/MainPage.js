@@ -19,11 +19,11 @@ const MainPage = () => {
         Город: {city}
       </button>
       <Modal active={modalActive} setActive={setModalActive}>
-        <PopUp setActive={setModalActive} setCity={setCity} />
+        <PopUp setActive={setModalActive} setCity={setCity}/>
       </Modal>
-      <About />
-      <CategorySection />
-      <Tags />
+      <About/>
+      <CategorySection/>
+      <Tags/>
     </div>
   );
 };
