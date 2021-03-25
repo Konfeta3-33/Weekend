@@ -13,7 +13,7 @@ const CategoryItem = ({ item: { id, name, image, isActive }, toggleFavorites, fa
       {/*     style={{ width: 160, height: 120 }}/>*/}
       <img src={img} className="mb-2.5 rounded-xl"
            style={{ width: 160, height: 120 }}/>
-      <img src={favorites.includes(id) ? heartFull : heart} style={{ width: 19, height: 17 }}
+      <img src={favorites?.includes(id) ? heartFull : heart} style={{ width: 19, height: 17 }}
            onClick={toggleFavorites} className="absolute top-24 right-2"/>
       <h2 className="text-white w-full text-xs md:text-base font-medium">{name}</h2>
     </Link>) : null;
