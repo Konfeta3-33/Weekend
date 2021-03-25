@@ -33,7 +33,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={MainPage}/>
             <Route path="/categories/:id" component={CategoryPage}/>
-            <Route path="/tags" component={TagsPage}/>
+            <Route path="/tags/:id" component={TagsPage}/>
             <Route path="/event/:id" component={EventPage}/>
             <Route path="/politics" component={Politics}/>
             <Route path="/collaboration" component={Collaboration}/>
