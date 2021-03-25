@@ -23,17 +23,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <React.StrictMode>
         <Router>
-          <div className="mb-3 flex items-center border">
-            <Link to="/">
-              <img src={logo} alt="logo" className="justify-self-start" style={{ width: 159 }}/>
-            </Link>
-            <h3 className="m-auto">Здесь будет хэдэр</h3>
-          </div>
+          <Header/>
           <Switch>
             <Route exact path="/" component={MainPage}/>
             <Route path="/categories/:id" component={CategoryPage}/>
-            <Route path="/tags" component={TagsPage}/>
-            <Route path="/event" component={EventPage}/>
+            <Route path="/tags/:id" component={TagsPage}/>
+            <Route path="/event/:id" component={EventPage}/>
             <Route path="/politics" component={Politics}/>
             <Route path="/collaboration" component={Collaboration}/>
             <Route path="/contacts" component={Contacts}/>

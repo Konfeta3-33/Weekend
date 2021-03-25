@@ -2,7 +2,7 @@ import React, { useCallback, useState, useLayoutEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { postOrder } from "../helpers/requests"
 import Order from "../components/Order/Order"
-import Modal from "../components/Order/Modal"
+import Modal from "../components/Modal"
 
 const OrderPage = () => {
     const history = useHistory()
@@ -47,11 +47,14 @@ const OrderPage = () => {
     return (
         <>
             <Order postOrder={handlePostOrder} />
-            <Modal
-                active={active}
-                setActive={hadleSetActiveMolal}
-                message={message}
-            />
+            <Modal active={active} setActive={hadleSetActiveMolal}>
+                <div className="max-w-60 py-7 text-center text-base font-medium">
+                    {message === "Заявка успешно создана"
+                    ? `Ваша заявка успешно отправлена! Скоро мы свяжемся с
+                    вами. Спасибо!`
+                    : message}
+                </div> 
+            </Modal>
         </>
     )
 }

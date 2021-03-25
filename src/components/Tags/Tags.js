@@ -7,7 +7,7 @@ const Tags = () => {
     <div className="px-4 w-95 mx-auto md:w-2/3 xl:w-1/2">
       <div className="mb-6 flex justify-center items-center">
         <RectLeft />
-        <h2 className="mx-10 text-Gray text-xl font-semibold tracking-wide">
+        <h2 className="mx-4 text-BlackGray text-xl font-semibold tracking-wide">
           Лучшие подборки
         </h2>
         <RectRight />
