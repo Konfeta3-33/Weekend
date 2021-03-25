@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "./tailwind.output.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -14,7 +13,8 @@ import Contacts from "./components/contacts/Contacts.js";
 import OrderPage from "./pages/OrderPage";
 import Favorites from "./components/Favorites/Favorites.js";
 import Footer from "./components/footer/Footer.js";
-import logo from "./images/logo.png";
+import TestPage from "./pages/TestPage";
+import Header from "./components/header/Header";
 
 const queryClient = new QueryClient()
 
@@ -34,6 +34,7 @@ function App() {
             <Route path="/contacts" component={Contacts}/>
             <Route path="/order" component={OrderPage} />
             <Route path="/favorites" component={Favorites}/>
+            <Route path="/test" component={TestPage} />
           </Switch>
           <Footer/>
         </Router>

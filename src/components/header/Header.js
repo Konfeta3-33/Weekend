@@ -1,11 +1,7 @@
 import React, { useState, useCallback } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import "./Header.css";
 import {Collapse} from "react-collapse";
 import Menu from "../Menu";
-//import Search from "../Search";
-
 import logo from "./images/logo.png";
 import searchIcon from "./icons/search.svg";
 import favoriteIcon from "./icons/heart.svg";
@@ -14,7 +10,6 @@ import igIcon from "./icons/ig.svg";
 import vkIcon from "./icons/vk.svg";
 import fbIcon from "./icons/fb.svg";
 import okIcon from "./icons/ok.svg";
-
 
 const Header = () => {
   const [menuActive, setMenuActive] = useState(false);
