@@ -3,7 +3,7 @@ import RectLeftWhite from "./images/main/RectLeftWhite";
 import RectRightWhite from "./images/main/RectRightWhite";
 import CategoryItem from "./CategoryItem";
 
-const Category = ({ category, filteredCategory, toggle, toggleFavorites, favorites }) => {
+const Category = ({ category, filteredCategory, toggle, toggleFavorites, favorites, redirectToService }) => {
   if (!category) return null;
   const { name, services } = category;
 
@@ -19,9 +19,9 @@ const Category = ({ category, filteredCategory, toggle, toggleFavorites, favorit
           </div>
           <div className="flex flex-wrap justify-between">
             {toggle ? filteredCategory.map((item, idx) => (
-              <CategoryItem item={item} key={idx} favorites={favorites} toggleFavorites={() => toggleFavorites(item)}/>
+              <CategoryItem item={item} key={idx} favorites={favorites} toggleFavorites={(event) => toggleFavorites(event, item)} redirectToService={() => redirectToService(item)}/>
             )) : services?.map((item, idx) => (
-              <CategoryItem item={item} key={idx} favorites={favorites} toggleFavorites={() => toggleFavorites(item)}/>
+              <CategoryItem item={item} key={idx} favorites={favorites} toggleFavorites={(event) => toggleFavorites(event, item)} redirectToService={() => redirectToService(item)}/>
             ))}
           </div>
         </div>
