@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import FavoritesItem from "./FavoritesItem";
+import Cookies from "js-cookie";
 
 import testItem from "./testItem";
 
 const Favorites = () => {
   const [count, setCount] = useState(4);
+
+  const cookiesArray = Cookies.get();
+console.log(cookiesArray);
 
    const onOpen = () => {
      if (count < testItem.length) {

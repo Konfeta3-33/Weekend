@@ -1,0 +1,126 @@
+.order-titleblock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 71px;
+    color: #212121;
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+
+.order__title {
+    /* главные / заголовок 20 */
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 0 10px 0;
+}
+
+.order__subtitle {
+    /* главные / текст 16 */
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    /* Текст чёрный */
+}
+
+.order-label__text {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #212121;
+    margin: 0 0 6px 0;
+    text-transform: capitalize;
+}
+.order-form {
+    padding: 0 1.8rem;
+    width: 100%;
+    margin: 0 0 1rem 0;
+}
+.order__input {
+    border-color: #979797;
+    padding: 0.75rem 1.5rem;
+    outline: none;
+    color: #015648;
+    line-height: 19.5px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 1rem 0;
+}
+
+.order__input::placeholder {
+    color: #c2c2c2;
+    font-size: 1rem;
+}
+.order__input:focus {
+    border-color: #466fbd;
+}
+
+.order-form__button {
+    background-color: #00cca9;
+    border-radius: 10px;
+    align-self: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
+    padding: 1rem;
+    cursor: pointer;
+}
+.order-form__button:hover {
+    opacity: 0.67;
+}
+
+.order-form__button:active {
+    opacity: 0.1;
+}
+
+.order-checkbox {
+    display: flex;
+    padding: 0 1.5rem;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+}
+
+.order-checkbox__text {
+    /* Ваши данные защищены. Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с политикой конфиденциальности. */
+
+    /* главные / подписи */
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    /* Текст чёрный */
+    color: #212121;
+}
+
+.disabled,
+.disabled:hover,
+.disabled:active {
+    background-color: #e6faf6;
+    opacity: 1;
+
+    color: #00b694;
+    cursor: unset;
+}
+
+.error__input,
+.error__input:focus {
+    border: 2px solid red;
+}
+
+.error__text {
+    color: red;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}

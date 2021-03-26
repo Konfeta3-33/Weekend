@@ -11,7 +11,7 @@ const CategorySection = () => {
 
   return (
     <div className="w-95 md:w-full xl:w-full mx-auto flex flex-col text-center mb-5">
-      <div className="bg-category sm:bg-Sea bg-no-repeat bg-cover bg-center w-">
+      <div className="bg-category bg-no-repeat bg-cover bg-center">
         <div className="flex flex-wrap justify-center flex-col p-4">
           <div className="flex justify-center items-center w-60 mb-5 mx-auto mt-4">
             <RectLeftWhite/>

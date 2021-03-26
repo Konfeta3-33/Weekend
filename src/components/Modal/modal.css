@@ -20,7 +20,7 @@
 }
 
 .modal__content {
-    border-radius: 1rem;
+    border-radius: 20px;
     background-color: white;   
     transform: scale(0.5);
     transition: 0.4s all;
