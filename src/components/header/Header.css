@@ -1,0 +1,13 @@
+.searchForm {
+    position: relative;
+}
+
+.searchStyle {
+    padding: 10px 20px;
+}
+
+.closeIcon {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}

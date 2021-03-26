@@ -10,10 +10,17 @@ import igIcon from "./icons/ig.svg";
 import vkIcon from "./icons/vk.svg";
 import fbIcon from "./icons/fb.svg";
 import okIcon from "./icons/ok.svg";
+import { ReactComponent as UpArrow } from "./icons/up.svg";
+import { ReactComponent as DownArrow } from "./icons/down.svg";
+import { ReactComponent as Close } from "./icons/close.svg";
+import {useQuery} from 'react-query';
+import {getCategories} from '../../helpers/requests';
 
 const Header = () => {
   const [menuActive, setMenuActive] = useState(false);
 
+  const { data: categories } = useQuery("categories", getCategories);
+  console.log(categories)
   const height = 35;
 
   const accessibilityIds = {
@@ -25,6 +32,7 @@ const Header = () => {
   const [isButtonCollapseOpen, setIsButtonCollapseOpen] = useState(false);
   const [isButton2CollapseOpen, setIsButton2CollapseOpen] = useState(false);
   const [isButton3CollapseOpen, setIsButton3CollapseOpen] = useState(false);
+  const [searchValue, setSearchValue ] = useState('');
 
   const onClick = useCallback(
     () => setIsButtonCollapseOpen(!isButtonCollapseOpen),
@@ -40,6 +48,11 @@ const Header = () => {
     () => setIsButton3CollapseOpen(!isButton3CollapseOpen),
     [isButton3CollapseOpen]
   );
+
+  const handleSearch = (value) => {
+    // Реализовать отправку на API по функции Поиск
+    setSearchValue(value);
+  };
 
   return (
     <header className="mb-3">
@@ -68,15 +81,17 @@ const Header = () => {
             <img src={menuIcon} alt="menu" className="ml-4 inline-flex" style={{ width: 20 }}/>
           </button>
           <Menu active={menuActive} setActive={setMenuActive}>
+            <Close onClick={ () => setMenuActive(false)} className="closeIcon" />
             <ul className="list-none text-left p-5 pb-0">
               <li>
                 <button
-                className="focus:outline-none"
+                className="focus:outline-none inline-flex items-center"
                 aria-controls={accessibilityIds.button2}
                 aria-expanded={isButton2CollapseOpen}
                 onClick={onClick2}
                 type="button">
                   Москва
+                  {isButton2CollapseOpen ? <UpArrow/> : <DownArrow/>}
                 </button>
                 <Collapse
                   isOpened={isButton2CollapseOpen}>
@@ -90,28 +105,23 @@ const Header = () => {
               <li><a href="/">Главная</a></li>
               <li>
                 <button
-                  className="focus:outline-none"
+                  className="focus:outline-none inline-flex items-center"
                   aria-controls={accessibilityIds.button3}
                   aria-expanded={isButton3CollapseOpen}
                   onClick={onClick3}
                   type="button">
                   Категории
+                  {isButton3CollapseOpen ? <UpArrow/> : <DownArrow/>}
                 </button>
                 <Collapse
                   isOpened={isButton3CollapseOpen}>
                   <ul className="list-none" id={accessibilityIds.button3}>
-                    <li>
-                      <a href="/">Дома с детьми</a>
-                    </li>
-                    <li>
-                      <a href="/">В город с детьми</a>
-                    </li>
-                    <li>
-                      <a href="/">На природу с детьми</a>
-                    </li>
-                    <li>
-                      <a href="/">День рождения ребенка</a>
-                    </li>
+                    {categories?.map((item) => (
+                        item.isActive &&
+                        <li key={item.id}>
+                          <a href={`/categories/${item.id}`}>{item.name}</a>
+                        </li>
+                    ))}
                   </ul>
                 </Collapse>
               </li>
@@ -145,8 +155,15 @@ const Header = () => {
         <Collapse
           isOpened={isButtonCollapseOpen} className="">
           <div style={{height}} id={accessibilityIds.button} className="blob">
-            <form className="" action="">
-              <input type="text" className="w-full bg-gray-100 rounded-md p-1" placeholder="Поиск"/>
+            <form className="searchForm" action="">
+              <input
+                  value={searchValue}
+                  onChange={(e) => handleSearch(e.target.value)}
+                  type="text"
+                  className="searchStyle w-full bg-gray-100 rounded-md"
+                  placeholder="Поиск"
+              />
+              <Close className='closeIcon' onClick={() => setSearchValue('')}/>
             </form>
           </div>
         </Collapse>
