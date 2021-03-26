@@ -15,7 +15,7 @@ const TagsPage = () => {
 
   return (
     <>
-      <div className="w-95 md:w-full xl:w-full mx-auto -mb-2.5 flex flex-col text-center">
+      <div className="min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto -mb-2.5 flex flex-col text-center">
         <div 
           className={`p-4 bg-no-repeat bg-cover bg-center
           ${GroupId === 1 ? "bg-tagsOrange" : `${GroupId === 2 ? "bg-tagsBlue" : "bg-category"}`} `}

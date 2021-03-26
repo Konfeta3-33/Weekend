@@ -42,6 +42,7 @@ module.exports = {
       },
       minWidth: {
         14: "60px",
+        320: "320px"
       },
       maxWidth: {
         25: "100px",
@@ -49,6 +50,10 @@ module.exports = {
       },
       width: {
         95: "375px"
+      },
+      screens: {
+        "xs": "320px",
+        "s": "375px"
       }
     },
     fontFamily: {

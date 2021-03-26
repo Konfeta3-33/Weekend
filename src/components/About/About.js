@@ -5,7 +5,7 @@ import RectRight from "../../images/icons/RectRight";
 
 const About = () => {
   return (
-    <div className="w-95 md:w-full xl:w-full mx-auto flex flex-col text-center mb-7">
+    <div className="min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto flex flex-col text-center mb-7">
       <MainImg/>
       <div className="flex justify-center items-center w-72 mb-5 mx-auto">
         <RectLeft/>

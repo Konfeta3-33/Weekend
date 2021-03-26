@@ -6,7 +6,7 @@ const Specific = ({ Adresses, price, worktime, limits, Tags }) => {
   console.log("adress: ", Adresses);
 
   return (
-    <div className="px-4 mb-5 flex flex-col w-95 mx-auto md:w-2/3 xl:w-1/2">
+    <div className="px-4 mb-5 flex flex-col min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto md:w-2/3 xl:w-1/2">
       <div className="mb-2.5 flex">
         <IconStar />
         <IconStar />
