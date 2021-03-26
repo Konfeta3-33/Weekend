@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import ShowTags from "./ShowTags";
+import TagItem from "./TagItem";
 
-const TagBlock = ({ title, cat }) => {
+const TagBlock = ({ title, color, Tags }) => {
   const [visibleTags, setVisibleTags] = useState(true);
 
   const toggleVisibleTags = () => {
@@ -25,7 +25,17 @@ const TagBlock = ({ title, cat }) => {
           )}
         </span>
       </p>
-      <ShowTags visibility={visibleTags} cat={cat} />
+      {visibleTags ? (
+        <div className="flex flex-wrap">
+          {Tags?.map((item, idx) => {
+            return (
+              <div key={idx} className="mr-5 mb-7">
+                <TagItem item={item} color={color} />
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -6,12 +6,12 @@ import Specific from "../components/Specific";
 
 const EventPage = () => {
   const { id } = useParams();
-  const { data: services } = useQuery(["services", id], () => getServiceById(id));
+  const { data: service } = useQuery(["service", id], () => getServiceById(id));
   
-  if (!services) return null;
-  console.log("services: ", services);
+  if (!service) return null;
+  console.log("service: ", service);
 
-  const { name, Adresses, price, worktime, limits, Tags, description } = services;
+  const { name, Adresses, price, worktime, limits, Tags, description } = service;
 
   return (
     <>
