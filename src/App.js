@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import MainPage from "./pages/MainPage";
 import CategoryPage from "./pages/CategoryPage";
 import TagsPage from "./pages/TagsPage";
-import EventPage from "./pages/EventPage";
+import ServicePage from "./pages/ServicePage";
 import Politics from "./components/politics/Politics.js";
 import Collaboration from "./components/collaboration/Collaboration.js";
 import Contacts from "./components/contacts/Contacts.js";
@@ -28,7 +28,7 @@ function App() {
             <Route exact path="/" component={MainPage}/>
             <Route path="/categories/:id" component={CategoryPage}/>
             <Route path="/tags/:id" component={TagsPage}/>
-            <Route path="/event/:id" component={EventPage}/>
+            <Route path="/service/:id" component={ServicePage}/>
             <Route path="/politics" component={Politics}/>
             <Route path="/collaboration" component={Collaboration}/>
             <Route path="/contacts" component={Contacts}/>

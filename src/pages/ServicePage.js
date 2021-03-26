@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getServiceById } from "../helpers/requests";
 import Specific from "../components/Specific";
 
-const EventPage = () => {
+const ServicePage = () => {
   const { id } = useParams();
   const { data: service } = useQuery(["service", id], () => getServiceById(id));
   
@@ -21,4 +21,4 @@ const EventPage = () => {
   );
 };
 
-export default EventPage;
+export default ServicePage;
