@@ -1,18 +1,25 @@
 import IconMap from "./icons/IconMap";
+import IconCloseButton from "./icons/IconCloseButton";
 import ChoiceCity from "./ChoiceCity";
 import useVisibilityToggler from "./useVisibilityToggler";
 
 const PopUp = ({ setActive, setCity }) => {
   const [ChoiseCityComponent, toggleVisibilityCity] = useVisibilityToggler(
-    <ChoiceCity
-      setActive={setActive}
-      setCity={setCity}
+    <ChoiceCity 
+      setActive={setActive} 
+      setCity={setCity} 
     />,
     false
   );
 
   return (
-    <div className="px-1">
+    <div className="px-1 relative bg-white">
+      <button
+        className="absolute -top-4 -right-4 border-none bg-transparent cursor-pointer hover:opacity-70 focus:outline-none"
+        onClick={() => setActive(false)}
+      >
+        <IconCloseButton />
+      </button>
       <div className="flex items-center">
         <IconMap />
         <p className="mb-5 mt-1 text-lg font-semibold text-center">

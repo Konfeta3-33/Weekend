@@ -48,12 +48,20 @@ const OrderPage = () => {
         <>
             <Order postOrder={handlePostOrder} />
             <Modal active={active} setActive={hadleSetActiveMolal}>
-                <div className="max-w-60 py-7 text-center text-base font-medium">
+                <div className="max-w-60 py-5 text-center text-base font-medium">
                     {message === "Заявка успешно создана"
                     ? `Ваша заявка успешно отправлена! Скоро мы свяжемся с
                     вами. Спасибо!`
                     : message}
                 </div> 
+                    <div className="flex justify-center">
+                        <button
+                            className="py-2.5 px-6 rounded-10px text-white bg-Sea cursor-pointer hover:shadow-drop focus:outline-none"
+                            onClick={() => setActive(false)}
+                        >
+                            Ок
+                        </button>
+                    </div>
             </Modal>
         </>
     )
