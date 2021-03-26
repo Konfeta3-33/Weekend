@@ -29,6 +29,7 @@ module.exports = {
         Orange: "#FF9F39",
         Blue: "#466FBD",
         Crimson: "#BD467F",
+        Gray: "#979797",
       }),
       borderRadius: {
         "10px": "10px",
