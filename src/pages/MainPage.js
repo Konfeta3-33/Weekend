@@ -4,11 +4,15 @@ import PopUp from "../components/PopUp";
 import About from "../components/About";
 import CategorySection from "../components/Category";
 import Tags from "../components/Tags";
+import { useQuery } from "react-query";
+import { getGroups } from "../helpers/requests";
 
 const MainPage = () => {
   const [modalActive, setModalActive] = useState(false);
 
   const [city, setCity] = useState("Москва");
+
+  const { data: groups } = useQuery("groups", () => getGroups());
 
   return (
     <div className="App">
@@ -23,7 +27,7 @@ const MainPage = () => {
       </Modal>
       <About/>
       <CategorySection/>
-      <Tags/>
+      <Tags groups={groups} />
     </div>
   );
 };
