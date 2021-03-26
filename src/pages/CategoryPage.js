@@ -16,6 +16,7 @@ const CategoryPage = () => {
   const [toggle, setToggle] = useState(false);
   const [subCatId, setSubCatId] = useState(null);
   const [favorites, setFavorites] = useState(() => Cookies.getJSON("favorites") || []);
+  console.log("favorites", favorites);
 
   const { data: category } = useQuery(["category", id], () => getCategoryById(id));
 
@@ -33,8 +34,11 @@ const CategoryPage = () => {
     subCatId === item.id ? setToggle(!toggle) : setToggle(true);
   };
 
-  const toggleFavorites = (item) => {
-    const alreadyFavorite = favorites.indexOf(id) > -1;
+  const toggleFavorites = (event, item) => {
+    console.log("item:", item);
+    event.stopPropagation();
+    // event.preventDefault();
+    const alreadyFavorite = favorites.indexOf(item.id) > -1;
     const newFavorites = alreadyFavorite ? favorites.filter((id) => id !== item.id) : [...favorites, item.id];
     setFavorites(newFavorites);
   };
@@ -43,12 +47,17 @@ const CategoryPage = () => {
     Cookies.set("favorites", JSON.stringify(favorites), { expires: 10 });
   }, [favorites]);
 
+  const redirectToService = (item) => {
+    console.log("itemRedirect:", item);
+  };
+
 
   return (
     <>
       <SubCategories subCategories={subCategories} filterSubCategories={filterForSubCategory}/>
       <Category category={category} filteredCategory={filteredCategory} toggle={toggle}
-                toggleFavorites={toggleFavorites} favorites={favorites}/>
+                toggleFavorites={toggleFavorites} favorites={favorites}
+                redirectToService={redirectToService}/>
     </>
   );
 };

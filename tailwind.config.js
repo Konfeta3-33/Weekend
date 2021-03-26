@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
@@ -16,7 +18,7 @@ module.exports = {
         Crimson: "#BD467F",
         Gray: "#979797",
         DarkGreen: "#00ad90",
-        BlackGray: "#212121"
+        BlackGray: "#212121",
       }),
       backgroundColor: (theme) => ({
         Sea: "#00CCA9",
@@ -42,26 +44,36 @@ module.exports = {
       },
       minWidth: {
         14: "60px",
+        320: "320px",
       },
       maxWidth: {
         25: "100px",
         60: "250px",
       },
       width: {
-        95: "375px"
-      }
+        95: "375px",
+        34: "8.75rem",
+      },
+      inset: {
+        18: "4.5rem",
+      },
     },
     fontFamily: {
       sans: ["Montserrat", "ui-sans-serif", "system-ui"],
     },
+    screens: {
+      "xs": "320px",
+      "s": "375px",
+      ...defaultTheme.screens,
+    },
     variants: {
-        extend: {
-            textColor: ["active"],
-            backgroundColor: ["active"],
-            borderColor: ["active"],
-            borderRadius: ["hover", "focus"],
-            fill: ["hover", "focus"],
-        },
+      extend: {
+        textColor: ["active"],
+        backgroundColor: ["active"],
+        borderColor: ["active"],
+        borderRadius: ["hover", "focus"],
+        fill: ["hover", "focus"],
+      },
     },
     plugins: [],
   },
