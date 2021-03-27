@@ -81,7 +81,6 @@ const CollaborationForm = () => {
                     error={errors.email}
                     required={{
                         required: true,
-
                         pattern: {
                             value: /^\S+@\S+$/i,
                             message: "не верно указана почта",

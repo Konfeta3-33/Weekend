@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import FavoritesItem from "./FavoritesItem";
 import Cookies from "js-cookie";
-
+import { useQuery } from "react-query";
+import { getServices } from "../../helpers/requests";
 import testItem from "./testItem";
 
 const Favorites = () => {
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState(4); 
+  const { data: services } = useQuery("services", () => getServices());
+  const cookiesId = Cookies.getJSON("favorites");
 
-  const cookiesArray = Cookies.get();
-console.log(cookiesArray);
+  const favoriteFilter = services?.filter(({id}) => cookiesId.includes(id));
+    console.log(favoriteFilter);
 
    const onOpen = () => {
-     if (count < testItem.length) {
+     if (count < favoriteFilter.length) {
       setCount(count + 4);
      }
-    
    };
-
+   
     return (
         <div className="min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto flex flex-col text-center -mb-2.5">
         <div className="bg-category sm:bg-Sea bg-no-repeat bg-cover bg-center">
@@ -35,7 +37,7 @@ console.log(cookiesArray);
               </div>
             </div>
             <div className="flex flex-wrap justify-between">
-              {testItem.slice(0, count).map((item, id) => (
+              {favoriteFilter?.slice(0, count).map((item, id) => (
                 <FavoritesItem item={item} key={id} />
             ))}
             </div>
@@ -48,5 +50,5 @@ console.log(cookiesArray);
     )
 };
 
-export default Favorites;
+export default React.memo(Favorites);
 
