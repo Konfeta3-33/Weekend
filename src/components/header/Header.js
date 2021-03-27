@@ -81,7 +81,7 @@ const Header = () => {
             <img src={menuIcon} alt="menu" className="ml-4 inline-flex" style={{ width: 20 }}/>
           </button>
           <Menu active={menuActive} setActive={setMenuActive}>
-            <Close onClick={ () => setMenuActive(false)} className="closeIcon" />
+            <Close onClick={ () => setMenuActive(false)} className="right-3 top-2 absolute" />
             <ul className="list-none text-left p-5 pb-0">
               <li>
                 <button
