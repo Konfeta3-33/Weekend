@@ -155,15 +155,15 @@ const Header = () => {
         <Collapse
           isOpened={isButtonCollapseOpen} className="">
           <div style={{height}} id={accessibilityIds.button} className="blob">
-            <form className="searchForm" action="">
+            <form className="relative" action="">
               <input
                   value={searchValue}
                   onChange={(e) => handleSearch(e.target.value)}
                   type="text"
-                  className="searchStyle w-full bg-gray-100 rounded-md"
+                  className="px-4 py-2 w-full bg-gray-100 rounded-md"
                   placeholder="Поиск"
               />
-              <Close className='closeIcon' onClick={() => setSearchValue('')}/>
+              <Close className="right-3 top-2 absolute" onClick={() => setSearchValue('')}/>
             </form>
           </div>
         </Collapse>
