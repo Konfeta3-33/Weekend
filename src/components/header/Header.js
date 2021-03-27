@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, {useState, useCallback, useRef} from "react";
 import "./Header.css";
 import {Collapse} from "react-collapse";
 import Menu from "../Menu";
@@ -15,12 +15,15 @@ import { ReactComponent as DownArrow } from "./icons/down.svg";
 import { ReactComponent as Close } from "./icons/close.svg";
 import {useQuery} from 'react-query';
 import {getCategories} from '../../helpers/requests';
-
+import { useHistory } from 'react-router-dom';
 const Header = () => {
+  const inputRef = useRef(null);
+  const history = useHistory();
   const [menuActive, setMenuActive] = useState(false);
+  const [searchValue, setSearchValue ] = useState('');
 
   const { data: categories } = useQuery("categories", getCategories);
-  console.log(categories)
+
   const height = 35;
 
   const accessibilityIds = {
@@ -32,10 +35,12 @@ const Header = () => {
   const [isButtonCollapseOpen, setIsButtonCollapseOpen] = useState(false);
   const [isButton2CollapseOpen, setIsButton2CollapseOpen] = useState(false);
   const [isButton3CollapseOpen, setIsButton3CollapseOpen] = useState(false);
-  const [searchValue, setSearchValue ] = useState('');
 
   const onClick = useCallback(
-    () => setIsButtonCollapseOpen(!isButtonCollapseOpen),
+    () => {
+      setIsButtonCollapseOpen(!isButtonCollapseOpen);
+      inputRef.current.focus();
+    },
     [isButtonCollapseOpen]
   );
 
@@ -49,13 +54,15 @@ const Header = () => {
     [isButton3CollapseOpen]
   );
 
-  const handleSearch = (value) => {
-    // Реализовать отправку на API по функции Поиск
-    setSearchValue(value);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    history.push(`/search/?name=${searchValue}`);
+    setIsButtonCollapseOpen(!isButtonCollapseOpen);
+    setSearchValue('');
   };
 
   return (
-    <header className="mb-3">
+    <header className="mb-4">
       <div className="flex justify-between">
         <div className="">
           <a href="/">
@@ -71,7 +78,7 @@ const Header = () => {
             type="button">
             <img src={searchIcon} alt="search" className="inline-flex" style={{ width: 20 }}/>
           </button>
-          <a href="/favorite" className="">
+          <a href={"/favorite"} className="">
             <img src={favoriteIcon} alt="favorite" className="ml-4 inline-flex" style={{ width: 20 }}/>
           </a>
           <button
@@ -155,13 +162,14 @@ const Header = () => {
         <Collapse
           isOpened={isButtonCollapseOpen} className="">
           <div style={{height}} id={accessibilityIds.button} className="blob">
-            <form className="relative" action="">
+            <form className="relative" onSubmit={(e) => handleSearch(e)}>
               <input
                   value={searchValue}
-                  onChange={(e) => handleSearch(e.target.value)}
+                  onChange={(e) => setSearchValue(e.target.value)}
                   type="text"
                   className="px-4 py-2 w-full bg-gray-100 rounded-md"
                   placeholder="Поиск"
+                  ref={inputRef}
               />
               <Close className="right-3 top-2 absolute" onClick={() => setSearchValue('')}/>
             </form>
