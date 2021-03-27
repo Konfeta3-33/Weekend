@@ -12,6 +12,7 @@ import Collaboration from "./components/collaboration/Collaboration.js";
 import Contacts from "./components/contacts/Contacts.js";
 import OrderPage from "./pages/OrderPage";
 import Favorites from "./components/Favorites/Favorites.js";
+import CollaborationForm from "./components/collaboration/CollaborationForm.js";
 import Footer from "./components/footer/Footer.js";
 import TestPage from "./pages/TestPage";
 import Header from "./components/header/Header";
@@ -34,6 +35,7 @@ function App() {
             <Route path="/contacts" component={Contacts}/>
             <Route path="/order" component={OrderPage} />
             <Route path="/favorites" component={Favorites}/>
+            <Route path="/collaborationForm" component={CollaborationForm}/>
             <Route path="/test" component={TestPage} />
           </Switch>
           <Footer/>

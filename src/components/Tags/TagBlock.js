@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import TagItem from "./TagItem";
 
-const TagBlock = ({ title, color, Tags }) => {
+const TagBlock = ({ item: {name, color, Tags} }) => {
   const [visibleTags, setVisibleTags] = useState(true);
 
   const toggleVisibleTags = () => {
@@ -16,7 +16,7 @@ const TagBlock = ({ title, color, Tags }) => {
         className="mb-4 text-base font-medium cursor-pointer"
         onClick={toggleVisibleTags}
       >
-        {title} &nbsp;
+        {name} &nbsp;
         <span className="text-sm">
           {visibleTags ? (
             <FontAwesomeIcon icon={faChevronUp} />
