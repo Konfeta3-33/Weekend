@@ -1,10 +1,7 @@
 import TagItem from "../Tags/TagItem";
 import IconStar from "./icons/IconStar";
 
-const Specific = ({ Adresses, price, worktime, limits, Tags }) => {
-  
-  console.log("adress: ", Adresses);
-
+const Specific = ({ Addresses, price, worktime, limits, Tags }) => {
   return (
     <div className="px-4 mb-5 flex flex-col min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto md:w-2/3 xl:w-1/2">
       <div className="mb-2.5 flex">
@@ -19,9 +16,9 @@ const Specific = ({ Adresses, price, worktime, limits, Tags }) => {
       </div>
       <div className="mb-2.5">
         <span className="font-bold">Адрес: </span>
-        {Adresses?.map((item, idx) => (
+        {Addresses?.map((item, idx) => (
           <span className="mb-4 mr-2" item={item} key={idx}>
-            {item.city}, {item.street}
+            г. {item.city}, {item.street} <br />
           </span>
         ))}
       </div>
