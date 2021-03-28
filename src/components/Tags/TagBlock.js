@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import TagItem from "./TagItem";
+import IconUp from "../header/icons/IconUp";
+import IconDown from "../header/icons/IconDown";
 
 const TagBlock = ({ item: {name, color, Tags} }) => {
   const [visibleTags, setVisibleTags] = useState(true);
@@ -13,17 +13,11 @@ const TagBlock = ({ item: {name, color, Tags} }) => {
   return (
     <div className="text-BlackGray">
       <p
-        className="mb-4 text-base font-medium cursor-pointer"
+        className="mb-4 flex items-center text-base font-medium cursor-pointer"
         onClick={toggleVisibleTags}
       >
         {name} &nbsp;
-        <span className="text-sm">
-          {visibleTags ? (
-            <FontAwesomeIcon icon={faChevronUp} />
-          ) : (
-            <FontAwesomeIcon icon={faChevronDown} />
-          )}
-        </span>
+        {visibleTags ? <IconUp /> : <IconDown />}
       </p>
       {visibleTags ? (
         <div className="flex flex-wrap">

@@ -10,8 +10,10 @@ import igIcon from "./icons/ig.svg";
 import vkIcon from "./icons/vk.svg";
 import fbIcon from "./icons/fb.svg";
 import okIcon from "./icons/ok.svg";
+import IconUp from "./icons/IconUp";
+import IconDown from "./icons/IconDown";
 
-const Header = () => {
+const Header = ({ city, setCity }) => {
   const [menuActive, setMenuActive] = useState(false);
 
   const height = 35;
@@ -71,18 +73,34 @@ const Header = () => {
             <ul className="list-none text-left p-5 pb-0">
               <li>
                 <button
-                className="focus:outline-none"
+                className="focus:outline-none flex items-center"
                 aria-controls={accessibilityIds.button2}
                 aria-expanded={isButton2CollapseOpen}
                 onClick={onClick2}
                 type="button">
-                  Москва
+                  { city ? city : 'Выбрать город'} &nbsp;
+                  {isButton2CollapseOpen ? <IconUp /> : <IconDown />}
                 </button>
                 <Collapse
                   isOpened={isButton2CollapseOpen}>
                   <ul className="list-none" id={accessibilityIds.button2}>
-                    <li>
-                      <a href="/">Екатеринбург</a>
+                    <li 
+                      className="ml-2 cursor-pointer hover:text-Sea"
+                      onClick={() => {
+                        setCity("Москва");
+                        setIsButton2CollapseOpen(false);
+                      }}
+                    >
+                      Москва
+                    </li>
+                    <li
+                      className="ml-2 cursor-pointer hover:text-Sea"
+                      onClick={() => {
+                        setCity("Екатеринбург");
+                        setIsButton2CollapseOpen(false);
+                      }}
+                    >
+                      Екатеринбург
                     </li>
                   </ul>
                 </Collapse>

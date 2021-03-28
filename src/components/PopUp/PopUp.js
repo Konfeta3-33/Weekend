@@ -34,7 +34,7 @@ const PopUp = ({ setActive, setCity }) => {
             }
             onClick={() => {
               setActive(false);
-              setCity("Moscow");
+              setCity("Москва");
             }}
           >
             Да
