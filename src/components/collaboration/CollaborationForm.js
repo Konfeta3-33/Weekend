@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import Input from "../Order/Input";
 import IconCheckbox from "../Order/icons/IconCheckbox";
 import '../Order/style.css';
@@ -20,7 +21,6 @@ const CollaborationForm = () => {
 
     const modelClose = () => {
         setActiveModel(false);
-        window.location.href = "/";
     };
 
     return (
@@ -117,12 +117,14 @@ const CollaborationForm = () => {
                     Спасибо!
                 </div> 
                     <div className="flex justify-center">
-                        <button
-                            className="py-2.5 px-6 rounded-10px text-white bg-Sea cursor-pointer hover:shadow-drop focus:outline-none"
-                            onClick={modelClose}
-                        >
-                            Ок
-                        </button>
+                        <Link to={`/`}>
+                            <button
+                                className="py-2.5 px-6 rounded-10px text-white bg-Sea cursor-pointer hover:shadow-drop focus:outline-none"
+                                onClick={modelClose}
+                            >
+                                Ок
+                            </button>
+                        </Link>
                     </div>
             </Modal>
            
