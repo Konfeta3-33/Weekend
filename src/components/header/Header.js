@@ -36,9 +36,7 @@ const Header = () => {
   const [isButton3CollapseOpen, setIsButton3CollapseOpen] = useState(false);
 
   const onClick = useCallback(
-    () => {
-      setIsButtonCollapseOpen(!isButtonCollapseOpen);
-    },
+    () => {setIsButtonCollapseOpen(!isButtonCollapseOpen);},
     [isButtonCollapseOpen]
   );
 
