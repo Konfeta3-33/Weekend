@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useRef} from "react";
+import React, {useState, useCallback} from "react";
 import "./Header.css";
 import {Collapse} from "react-collapse";
 import Menu from "../Menu";
@@ -15,10 +15,9 @@ import { ReactComponent as DownArrow } from "./icons/down.svg";
 import { ReactComponent as Close } from "./icons/close.svg";
 import {useQuery} from 'react-query';
 import {getCategories} from '../../helpers/requests';
-import { useHistory } from 'react-router-dom';
+
 const Header = () => {
-  const inputRef = useRef(null);
-  const history = useHistory();
+
   const [menuActive, setMenuActive] = useState(false);
   const [searchValue, setSearchValue ] = useState('');
 
@@ -39,7 +38,6 @@ const Header = () => {
   const onClick = useCallback(
     () => {
       setIsButtonCollapseOpen(!isButtonCollapseOpen);
-      inputRef.current.focus();
     },
     [isButtonCollapseOpen]
   );
@@ -56,7 +54,6 @@ const Header = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    history.push(`/search/?name=${searchValue}`);
     setIsButtonCollapseOpen(!isButtonCollapseOpen);
     setSearchValue('');
   };
@@ -169,7 +166,7 @@ const Header = () => {
                   type="text"
                   className="px-4 py-2 w-full bg-gray-100 rounded-md"
                   placeholder="Поиск"
-                  ref={inputRef}
+                  autoFocus={true}
               />
               <Close className="right-3 top-2 absolute" onClick={() => setSearchValue('')}/>
             </form>
