@@ -73,7 +73,7 @@ const Header = () => {
             type="button">
             <img src={searchIcon} alt="search" className="inline-flex" style={{ width: 20 }}/>
           </button>
-          <a href={"/favorite"} className="">
+          <a href="/favorites" className="">
             <img src={favoriteIcon} alt="favorite" className="ml-4 inline-flex" style={{ width: 20 }}/>
           </a>
           <button
