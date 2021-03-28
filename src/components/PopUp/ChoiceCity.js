@@ -10,7 +10,7 @@ const ChoiceCity = ({ setActive, setCity }) => {
         <li
           className="mt-4 block list-none cursor-pointer hover:text-Sea"
           onClick={() => {
-            setCity("Москва");
+            setCity("Moscow");
             setActive(false);
           }}
         >
@@ -19,7 +19,7 @@ const ChoiceCity = ({ setActive, setCity }) => {
         <li
           className="mt-4 block list-none cursor-pointer hover:text-Sea"
           onClick={() => {
-            setCity("Екатеринбург");
+            setCity("Ekaterinburg");
             setActive(false);
           }}
         >
