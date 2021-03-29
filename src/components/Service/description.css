@@ -1,6 +1,7 @@
 .tab-list {
     font-size: 20px;
     border-bottom: 3px solid rgba(33, 33, 33, 0.2);
+    margin-bottom: 16px;
 }
 
 .react-tabs__tab {
@@ -11,4 +12,8 @@
 .react-tabs__tab--selected {
     border-bottom: 3px solid #00CCA9;
     border-color: #00CCA9;
+}
+
+.last:last-child {
+    border-bottom: none;
 }
