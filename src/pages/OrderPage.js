@@ -19,13 +19,6 @@ const OrderPage = () => {
     useLayoutEffect(() => {
         if (message.length > 0) {
             setActive(true)
-            setTimeout(() => {
-                setActive(false)
-            }, 3000)
-            setTimeout(() => {
-                setMessage("")
-                history.goBack()
-            }, 4000)
         }
     }, [message])
 
@@ -57,7 +50,11 @@ const OrderPage = () => {
                     <div className="flex justify-center">
                         <button
                             className="py-2.5 px-6 rounded-10px text-white bg-Sea cursor-pointer hover:shadow-drop focus:outline-none"
-                            onClick={() => setActive(false)}
+                            onClick={ () => {
+                                setActive(false);
+                                setMessage("");
+                                history.goBack();
+                              }}
                         >
                             Ок
                         </button>
