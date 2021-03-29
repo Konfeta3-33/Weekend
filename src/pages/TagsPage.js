@@ -21,7 +21,7 @@ const TagsPage = () => {
           ${GroupId === 1 ? "bg-tagsOrange" : `${GroupId === 2 ? "bg-tagsBlue" : "bg-category"}`} `}
         >
           <div className="flex flex-wrap justify-center flex-col">
-            <div className="w-60 mt-4 mb-5 mx-auto flex justify-center items-center">
+            <div className="w-64 mt-4 mb-5 mx-auto flex justify-center items-center">
               <RectLeftWhite />
               <h1 className="text-white w-full text-xl font-semibold flex-shrink-0">
                 {name}

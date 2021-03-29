@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./tailwind.output.css";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -16,15 +17,38 @@ import CollaborationForm from "./components/collaboration/CollaborationForm.js";
 import Footer from "./components/footer/Footer.js";
 import TestPage from "./pages/TestPage";
 import Header from "./components/header/Header";
+import Modal from "./components/Modal";
+import PopUp from "./components/PopUp";
 
 const queryClient = new QueryClient()
 
 function App() {
+  const [modalActive, setModalActive] = useState(false);
+  
+  const [city, setCity] = useState(null);
+
+  useEffect(() => {
+    if (Cookies.getJSON("city") === void 0) {
+      setModalActive(true);
+    } else {
+      setCity(Cookies.getJSON("city"));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (city !== null) {
+      Cookies.set("city", city, { expires: 10 });
+    }
+  }, [city]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <React.StrictMode>
         <Router>
-          <Header/>
+          <Header city={city} setCity={setCity} />
+          <Modal active={modalActive} setActive={setModalActive}>
+            <PopUp setActive={setModalActive} setCity={setCity} />
+          </Modal>
           <Switch>
             <Route exact path="/" component={MainPage}/>
             <Route path="/categories/:id" component={CategoryPage}/>

@@ -16,8 +16,7 @@ import { ReactComponent as Close } from "./icons/close.svg";
 import {useQuery} from 'react-query';
 import {getCategories} from '../../helpers/requests';
 
-const Header = () => {
-
+const Header = ({ city, setCity }) => {
   const [menuActive, setMenuActive] = useState(false);
   const [searchValue, setSearchValue ] = useState('');
 
@@ -92,14 +91,29 @@ const Header = () => {
                 aria-expanded={isButton2CollapseOpen}
                 onClick={onClick2}
                 type="button">
-                  Москва
+                  { city ? city : 'Выбрать город'} 
                   {isButton2CollapseOpen ? <UpArrow/> : <DownArrow/>}
                 </button>
                 <Collapse
                   isOpened={isButton2CollapseOpen}>
                   <ul className="list-none" id={accessibilityIds.button2}>
-                    <li>
-                      <a href="/">Екатеринбург</a>
+                    <li 
+                      className="ml-2 cursor-pointer"
+                      onClick={() => {
+                        setCity("Москва");
+                        setIsButton2CollapseOpen(false);
+                      }}
+                    >
+                      Москва
+                    </li>
+                    <li
+                      className="ml-2 cursor-pointer"
+                      onClick={() => {
+                        setCity("Екатеринбург");
+                        setIsButton2CollapseOpen(false);
+                      }}
+                    >
+                      Екатеринбург
                     </li>
                   </ul>
                 </Collapse>
