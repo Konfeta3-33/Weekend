@@ -30,6 +30,10 @@ const placeholderDict = {
         placeholder: "укажите вашу почту",
         type: "text",
     },
+    yourCompanyName: {
+        placeholder: "Введите название",
+        type: "text",
+    },
 }
 
 const Input = (props) => {
