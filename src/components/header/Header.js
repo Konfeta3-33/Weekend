@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, {useState, useCallback} from "react";
 import "./Header.css";
 import {Collapse} from "react-collapse";
 import Menu from "../Menu";
@@ -10,11 +10,17 @@ import igIcon from "./icons/ig.svg";
 import vkIcon from "./icons/vk.svg";
 import fbIcon from "./icons/fb.svg";
 import okIcon from "./icons/ok.svg";
-import IconUp from "./icons/IconUp";
-import IconDown from "./icons/IconDown";
+import { ReactComponent as UpArrow } from "./icons/up.svg";
+import { ReactComponent as DownArrow } from "./icons/down.svg";
+import { ReactComponent as Close } from "./icons/close.svg";
+import {useQuery} from 'react-query';
+import {getCategories} from '../../helpers/requests';
 
 const Header = ({ city, setCity }) => {
   const [menuActive, setMenuActive] = useState(false);
+  const [searchValue, setSearchValue ] = useState('');
+
+  const { data: categories } = useQuery("categories", getCategories);
 
   const height = 35;
 
@@ -29,7 +35,7 @@ const Header = ({ city, setCity }) => {
   const [isButton3CollapseOpen, setIsButton3CollapseOpen] = useState(false);
 
   const onClick = useCallback(
-    () => setIsButtonCollapseOpen(!isButtonCollapseOpen),
+    () => {setIsButtonCollapseOpen(!isButtonCollapseOpen);},
     [isButtonCollapseOpen]
   );
 
@@ -43,8 +49,14 @@ const Header = ({ city, setCity }) => {
     [isButton3CollapseOpen]
   );
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setIsButtonCollapseOpen(!isButtonCollapseOpen);
+    setSearchValue('');
+  };
+
   return (
-    <header className="mb-3">
+    <header className="mb-4">
       <div className="flex justify-between">
         <div className="">
           <a href="/">
@@ -70,22 +82,23 @@ const Header = ({ city, setCity }) => {
             <img src={menuIcon} alt="menu" className="ml-4 inline-flex" style={{ width: 20 }}/>
           </button>
           <Menu active={menuActive} setActive={setMenuActive}>
+            <Close onClick={ () => setMenuActive(false)} className="right-3 top-2 absolute" />
             <ul className="list-none text-left p-5 pb-0">
               <li>
                 <button
-                className="focus:outline-none flex items-center"
+                className="focus:outline-none inline-flex items-center"
                 aria-controls={accessibilityIds.button2}
                 aria-expanded={isButton2CollapseOpen}
                 onClick={onClick2}
                 type="button">
-                  { city ? city : 'Выбрать город'} &nbsp;
-                  {isButton2CollapseOpen ? <IconUp /> : <IconDown />}
+                  { city ? city : 'Выбрать город'} 
+                  {isButton2CollapseOpen ? <UpArrow/> : <DownArrow/>}
                 </button>
                 <Collapse
                   isOpened={isButton2CollapseOpen}>
                   <ul className="list-none" id={accessibilityIds.button2}>
                     <li 
-                      className="ml-2 cursor-pointer hover:text-Sea"
+                      className="ml-2 cursor-pointer hover:text-Orange"
                       onClick={() => {
                         setCity("Москва");
                         setIsButton2CollapseOpen(false);
@@ -94,7 +107,7 @@ const Header = ({ city, setCity }) => {
                       Москва
                     </li>
                     <li
-                      className="ml-2 cursor-pointer hover:text-Sea"
+                      className="ml-2 cursor-pointer hover:text-Orange"
                       onClick={() => {
                         setCity("Екатеринбург");
                         setIsButton2CollapseOpen(false);
@@ -108,28 +121,23 @@ const Header = ({ city, setCity }) => {
               <li><a href="/">Главная</a></li>
               <li>
                 <button
-                  className="focus:outline-none"
+                  className="focus:outline-none inline-flex items-center"
                   aria-controls={accessibilityIds.button3}
                   aria-expanded={isButton3CollapseOpen}
                   onClick={onClick3}
                   type="button">
                   Категории
+                  {isButton3CollapseOpen ? <UpArrow/> : <DownArrow/>}
                 </button>
                 <Collapse
                   isOpened={isButton3CollapseOpen}>
                   <ul className="list-none" id={accessibilityIds.button3}>
-                    <li>
-                      <a href="/">Дома с детьми</a>
-                    </li>
-                    <li>
-                      <a href="/">В город с детьми</a>
-                    </li>
-                    <li>
-                      <a href="/">На природу с детьми</a>
-                    </li>
-                    <li>
-                      <a href="/">День рождения ребенка</a>
-                    </li>
+                    {categories?.map((item) => (
+                        item.isActive &&
+                        <li key={item.id}>
+                          <a href={`/categories/${item.id}`}>{item.name}</a>
+                        </li>
+                    ))}
                   </ul>
                 </Collapse>
               </li>
@@ -163,8 +171,16 @@ const Header = ({ city, setCity }) => {
         <Collapse
           isOpened={isButtonCollapseOpen} className="">
           <div style={{height}} id={accessibilityIds.button} className="blob">
-            <form className="" action="">
-              <input type="text" className="w-full bg-gray-100 rounded-md p-1" placeholder="Поиск"/>
+            <form className="relative" onSubmit={(e) => handleSearch(e)}>
+              <input
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  type="text"
+                  className="px-4 py-2 w-full bg-gray-100 rounded-md"
+                  placeholder="Поиск"
+                  autoFocus={true}
+              />
+              <Close className="right-3 top-2 absolute" onClick={() => setSearchValue('')}/>
             </form>
           </div>
         </Collapse>

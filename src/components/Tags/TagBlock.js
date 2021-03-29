@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TagItem from "./TagItem";
-import IconUp from "../header/icons/IconUp";
-import IconDown from "../header/icons/IconDown";
+import { ReactComponent as UpArrow } from "../header/icons/up.svg";
+import { ReactComponent as DownArrow } from "../header/icons/down.svg";
 
 const TagBlock = ({ item: {name, color, Tags} }) => {
   const [visibleTags, setVisibleTags] = useState(true);
@@ -16,8 +16,8 @@ const TagBlock = ({ item: {name, color, Tags} }) => {
         className="mb-4 flex items-center text-base font-medium cursor-pointer"
         onClick={toggleVisibleTags}
       >
-        {name} &nbsp;
-        {visibleTags ? <IconUp /> : <IconDown />}
+        {name} 
+        {visibleTags ? <UpArrow /> : <DownArrow />}
       </p>
       {visibleTags ? (
         <div className="flex flex-wrap">

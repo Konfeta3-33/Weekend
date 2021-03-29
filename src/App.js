@@ -28,10 +28,10 @@ function App() {
   const [city, setCity] = useState(null);
 
   useEffect(() => {
-    if (Cookies.get("city") === void 0) {
+    if (Cookies.getJSON("city") === void 0) {
       setModalActive(true);
     } else {
-      setCity(Cookies.get("city"));
+      setCity(Cookies.getJSON("city"));
     }
   }, []);
 

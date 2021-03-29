@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import Input from "../Order/Input";
 import IconCheckbox from "../Order/icons/IconCheckbox";
 import '../Order/style.css';
+import Modal from "../Modal";
 const CollaborationForm = () => {
-    const [checked, setChecked] = useState(false)
+    const [checked, setChecked] = useState(false);
+    const [activeModel, setActiveModel] = useState(false);
+    const { register, handleSubmit, errors, trigger } = useForm();
 
     const handleCheck = () => {
         setChecked(!checked)
     }
 
-    const { register, handleSubmit, errors, trigger } = useForm();
     const onSubmit = (data) => {
+        
+        setActiveModel(!activeModel);
         console.log(data)};
 
+    const modelClose = () => {
+        setActiveModel(false);
+    };
 
     return (
         <>
@@ -59,14 +67,6 @@ const CollaborationForm = () => {
                      error={errors.phone}
                      required={{
                          required: true,
-                        //  minLength: {
-                        //      value: 10,
-                        //      message: "номер телефона слишком короткий",
-                        //  },
-                        //  maxLength: {
-                        //      value: 15,
-                        //      message: "номер телефона слишком длинный",
-                        //  },
                          pattern: {
                              value: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i,
                              message: "номер телефона кривой",
@@ -110,8 +110,23 @@ const CollaborationForm = () => {
                     конфиденциальности.
                 </span></a>
             </div>
-            
-            {/* <p>Спасибо, ваша заявка отправлена. Свяжемся с Вами в ближайшее время.</p> */}
+            <Modal active={activeModel}>
+                <div className="max-w-60 py-5 text-center text-base font-medium">
+                    Ваша заявка успешно отправлена!
+                    Скоро мы свяжемся с вами.
+                    Спасибо!
+                </div> 
+                    <div className="flex justify-center">
+                        <Link to={`/`}>
+                            <button
+                                className="py-2.5 px-6 rounded-10px text-white bg-Sea cursor-pointer hover:shadow-drop focus:outline-none"
+                                onClick={modelClose}
+                            >
+                                Ок
+                            </button>
+                        </Link>
+                    </div>
+            </Modal>
            
         </>
     )
