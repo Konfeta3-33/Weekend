@@ -15,7 +15,6 @@ const Order = ({ postOrder }) => {
 
     const handleAddressChange = (address) => {
         setAddress(address);
-       console.log("address", address);
    }
 
     const onSubmit = (newData) => {
