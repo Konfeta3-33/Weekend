@@ -56,7 +56,7 @@ function App() {
             <Route path="/politics" component={Politics}/>
             <Route path="/collaboration" component={Collaboration}/>
             <Route path="/contacts" component={Contacts}/>
-            <Route path="/order" component={OrderPage} />
+            <Route path="/order/:id" component={OrderPage} />
             <Route path="/favorites" component={Favorites}/>
             <Route path="/collaborationForm" component={CollaborationForm}/>
           </Switch>

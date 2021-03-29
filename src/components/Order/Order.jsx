@@ -1,12 +1,22 @@
 import React, { useState } from "react"
 import "./style.css"
 import { useForm } from "react-hook-form"
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { getServiceById } from "../../helpers/requests";
 import Input from "./Input"
 import IconCheckbox from "./icons/IconCheckbox.js"
 
 const Order = ({ postOrder }) => {
     const { register, handleSubmit, errors, trigger } = useForm()
     const [checked, setChecked] = useState(false)
+
+    const [address, setAddress] = useState('');
+
+    const handleAddressChange = (address) => {
+        setAddress(address);
+       console.log("address", address);
+   }
 
     const onSubmit = (newData) => {
         postOrder(newData)
@@ -15,6 +25,12 @@ const Order = ({ postOrder }) => {
     const handleCheck = () => {
         setChecked(!checked)
     }
+
+    const { id } = useParams();
+    const { data: service } = useQuery(["service", id], () => getServiceById(id));
+  
+    if (!service) return null;
+    const { Addresses } = service;
 
     return (
         <div className="flex flex-col  box-border items-center mb-4">
@@ -98,20 +114,19 @@ const Order = ({ postOrder }) => {
                         },
                     }}
                 />
-                <Input
-                    trigger={trigger}
+
+                <label className="mb-1.5 text-sm font-semibold">Адрес</label>
+                <select
+                    className="py-3 px-6 mb-4 text-DarkGreenForm font-medium border border-default rounded-10px focus:outline-none focus:border-Blue"
                     name="address"
-                    register={register}
-                    title="адрес"
-                    error={errors.address}
-                    required={{
-                        required: true,
-                        minLength: {
-                            value: 2,
-                            message: "не верно указан адрес",
-                        },
-                    }}
-                />
+                    value={address}
+                    onChange={(event) => handleAddressChange(event.target.value)}
+                >
+                    {Addresses?.map((item, idx) => (
+                        <option value={item.street} item={item} key={idx}>{item.street}</option>
+                    ))}
+                </select>
+
                 <Input
                     trigger={trigger}
                     name="persons"
