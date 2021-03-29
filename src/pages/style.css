@@ -1,8 +1,9 @@
-.swiper-slide {
-    border: 3px solid transparent;
-    border-radius: 4px;
+.swiper-container {
+    overflow: visible;
 }
 
-.swiper-slide-active {
-    border: 3px solid #00d0a9;
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: -10px;
 }
