@@ -17,3 +17,7 @@
 .last:last-child {
     border-bottom: none;
 }
+
+.img {
+    margin: 0 auto;
+}
