@@ -19,6 +19,7 @@ module.exports = {
         Gray: "#979797",
         DarkGreen: "#00ad90",
         BlackGray: "#212121",
+        DarkGreenForm: "#015648",
       }),
       backgroundColor: (theme) => ({
         Sea: "#00CCA9",
