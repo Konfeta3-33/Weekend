@@ -1,7 +1,7 @@
 import React from "react";
 import SubCategories from "../components/SubCategories";
 import Category from "../components/Category/Category";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import {
@@ -16,8 +16,8 @@ const CategoryPage = () => {
   const [toggle, setToggle] = useState(false);
   const [subCatId, setSubCatId] = useState(null);
   const [favorites, setFavorites] = useState(() => Cookies.getJSON("favorites") || []);
-  console.log("favorites", favorites);
 
+  let history = useHistory();
   const { data: category } = useQuery(["category", id], () => getCategoryById(id));
 
   const subCategoriesIds = category?.services?.map((item) => item.SubcategoryId);
@@ -35,7 +35,6 @@ const CategoryPage = () => {
   };
 
   const toggleFavorites = (event, item) => {
-    console.log("item:", item);
     event.stopPropagation();
     // event.preventDefault();
     const alreadyFavorite = favorites.indexOf(item.id) > -1;
@@ -48,6 +47,7 @@ const CategoryPage = () => {
   }, [favorites]);
 
   const redirectToService = (item) => {
+    history.push(`/service/${item.id}`);
     console.log("itemRedirect:", item);
   };
 
