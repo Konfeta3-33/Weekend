@@ -98,7 +98,7 @@ const Header = ({ city, setCity }) => {
                   isOpened={isButton2CollapseOpen}>
                   <ul className="list-none" id={accessibilityIds.button2}>
                     <li 
-                      className="ml-2 cursor-pointer hover:text-Orange"
+                      className="ml-2 cursor-pointer"
                       onClick={() => {
                         setCity("Москва");
                         setIsButton2CollapseOpen(false);
@@ -107,7 +107,7 @@ const Header = ({ city, setCity }) => {
                       Москва
                     </li>
                     <li
-                      className="ml-2 cursor-pointer hover:text-Orange"
+                      className="ml-2 cursor-pointer"
                       onClick={() => {
                         setCity("Екатеринбург");
                         setIsButton2CollapseOpen(false);
