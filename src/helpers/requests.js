@@ -41,6 +41,7 @@ export const getSubCategoriesFull = (arrIds) => {
   }));
 };
 export const getServices = () => getData(`${baseUrl}/api/services`);
+export const searchByName = (name) => getData(`${baseUrl}/api/services/?name=${name}`);
 
 export const postOrder = async (data) => {
   const query = {

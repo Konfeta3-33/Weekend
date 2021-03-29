@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import TagItem from "./TagItem";
+import { ReactComponent as UpArrow } from "../header/icons/up.svg";
+import { ReactComponent as DownArrow } from "../header/icons/down.svg";
 
-const TagBlock = ({ title, color, Tags }) => {
+const TagBlock = ({ item: {name, color, Tags} }) => {
   const [visibleTags, setVisibleTags] = useState(true);
 
   const toggleVisibleTags = () => {
@@ -13,17 +13,11 @@ const TagBlock = ({ title, color, Tags }) => {
   return (
     <div className="text-BlackGray">
       <p
-        className="mb-4 text-base font-medium cursor-pointer"
+        className="mb-4 flex items-center text-base font-medium cursor-pointer"
         onClick={toggleVisibleTags}
       >
-        {title} &nbsp;
-        <span className="text-sm">
-          {visibleTags ? (
-            <FontAwesomeIcon icon={faChevronUp} />
-          ) : (
-            <FontAwesomeIcon icon={faChevronDown} />
-          )}
-        </span>
+        {name} 
+        {visibleTags ? <UpArrow /> : <DownArrow />}
       </p>
       {visibleTags ? (
         <div className="flex flex-wrap">
