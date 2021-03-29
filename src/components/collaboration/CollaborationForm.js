@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Input from "../Order/Input";
 import IconCheckbox from "../Order/icons/IconCheckbox";
+import { postCollaborationForm } from "../../helpers/requests";
 import '../Order/style.css';
 import Modal from "../Modal";
 const CollaborationForm = () => {
@@ -14,11 +15,11 @@ const CollaborationForm = () => {
         setChecked(!checked)
     }
 
-    const onSubmit = (data) => {
-        
-        setActiveModel(!activeModel);
-        console.log(data)};
-
+    const onSubmit = async (newData) => {
+            const result = await postCollaborationForm(newData)
+            setActiveModel(!activeModel);
+        }
+      
     const modelClose = () => {
         setActiveModel(false);
     };
