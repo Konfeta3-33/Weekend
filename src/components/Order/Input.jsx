@@ -30,7 +30,7 @@ const placeholderDict = {
         placeholder: "укажите вашу почту",
         type: "text",
     },
-    yourCompanyName: {
+    сompanyName: {
         placeholder: "Введите название",
         type: "text",
     },

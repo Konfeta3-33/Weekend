@@ -57,3 +57,16 @@ export const postOrder = async (data) => {
   const result = await postData(`${baseUrl}/api/invoices`, query);
   return result;
 };
+
+export const postCollaborationForm = async (data) => {
+  const queryCollaborationForm = {
+    сompanyName: data.сompanyName,
+    name: data.name,
+    status: "new",
+    phone: data.phone,
+    email: data.email,
+  };
+
+  const result = await postData(`${baseUrl}/api/sendmail`, queryCollaborationForm);
+  return result;
+};
