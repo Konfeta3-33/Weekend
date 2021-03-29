@@ -60,7 +60,7 @@ export const postOrder = async (data) => {
 
 export const postCollaborationForm = async (data) => {
   const queryCollaborationForm = {
-    yourCompanyName: data.yourCompanyName,
+    сompanyName: data.сompanyName,
     name: data.name,
     status: "new",
     phone: data.phone,

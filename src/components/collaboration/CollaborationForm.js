@@ -15,8 +15,8 @@ const CollaborationForm = () => {
         setChecked(!checked)
     }
 
-    const onSubmit = async (newData) => {
-            const result = await postCollaborationForm(newData)
+    const onSubmit = (newData) => {
+            const result = postCollaborationForm(newData)
             setActiveModel(!activeModel);
         }
       
@@ -32,7 +32,7 @@ const CollaborationForm = () => {
                     name="yourCompanyName" 
                     trigger={trigger}
                     register={register}
-                    error={errors.yourCompanyName}
+                    error={errors.сompanyName}
                     title="Название Вашей компании"
                     required={{
                         required: true,
