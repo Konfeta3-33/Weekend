@@ -1,6 +1,7 @@
 import React from "react";
 import Specific from "../Specific";
 import Carousel from "./Carousel";
+import Description from "./Description";
 
 const Service = ({ service }) => {
 
@@ -8,6 +9,7 @@ const Service = ({ service }) => {
     <div>
       <Carousel service={service} />
       <Specific service={service}/>
+      <Description service={service}/>
     </div>
   );
 };

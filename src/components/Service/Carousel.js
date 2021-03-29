@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SwiperCore, { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
@@ -10,17 +10,17 @@ const Carousel = ({ service }) => {
   const { Images } = service;
 
   return (
-    <>
+    <div className="text-center">
       <Swiper
         spaceBetween={10}
         slidesPerView={1}
         // tag="service"
         pagination={{ clickable: true }}
-        centeredSlides
-        centerInsufficientSlides
+        // centeredSlides
+        // centerInsufficientSlides
         wrapperTag="div"
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log("slide change")}
+        // onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide direction="horizontal"><img src={img}/></SwiperSlide>
         <SwiperSlide direction="horizontal"><img src={img}/></SwiperSlide>
@@ -42,7 +42,7 @@ const Carousel = ({ service }) => {
         {/*  </SwiperSlide>*/}
         {/*))}*/}
       </Swiper>
-    </>
+    </div>
   );
 };
 
