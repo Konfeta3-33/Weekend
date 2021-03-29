@@ -1,11 +1,11 @@
 import React from "react";
-import SwiperCore, { Pagination, Scrollbar } from "swiper";
+import SwiperCore, { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "./style.css";
 import img from "./img/img.png";
 
-SwiperCore.use([Pagination, Scrollbar]);
+SwiperCore.use([Pagination]);
 const Carousel = ({ service }) => {
   const { Images } = service;
 

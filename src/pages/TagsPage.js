@@ -11,26 +11,26 @@ const TagsPage = () => {
   const { data: tag } = useQuery(["tag", id], () => getTagById(id));
 
   if (!tag) return null;
-  const { name, Services, GroupId } = tag;
+  const { name, Services, Group: { color } } = tag;
 
   return (
     <>
-      <div className="min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto -mb-2.5 flex flex-col text-center">
-        <div 
-          className={`p-4 bg-no-repeat bg-cover bg-center
-          ${GroupId === 1 ? "bg-tagsOrange" : `${GroupId === 2 ? "bg-tagsBlue" : "bg-category"}`} `}
+      <div
+        className="min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto -mb-2.5 flex flex-col text-center">
+        <div
+          className="p-4 bg-no-repeat bg-cover bg-center color" style={{ backgroundColor: color }}
         >
           <div className="flex flex-wrap justify-center flex-col">
             <div className="w-64 mt-4 mb-5 mx-auto flex justify-center items-center">
-              <RectLeftWhite />
+              <RectLeftWhite/>
               <h1 className="text-white w-full text-xl font-semibold flex-shrink-0">
                 {name}
               </h1>
-              <RectRightWhite />
+              <RectRightWhite/>
             </div>
             <div className="flex flex-wrap justify-between">
               {Services.map((item, idx) => (
-                <CategoryItem item={item} key={idx} />
+                <CategoryItem item={item} key={idx}/>
               ))}
             </div>
           </div>
