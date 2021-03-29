@@ -20,7 +20,7 @@ const Description = ({ service }) => {
           <h2>{description}</h2>
         </TabPanel>
         <TabPanel>
-          <h2>{feedbacks.map((item, idx) => (<FeedbackItem item={item} key={idx}/>))}</h2>
+          {feedbacks.map((item, idx) => (<FeedbackItem item={item} key={idx}/>))}
         </TabPanel>
       </Tabs>
     </div>
