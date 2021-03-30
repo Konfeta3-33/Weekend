@@ -21,8 +21,9 @@ const CategoryPage = () => {
   const { data: category } = useQuery(["category", id], () => getCategoryById(id));
 
   const subCategoriesIds = category?.services?.map((item) => item.SubcategoryId);
+  const uniqSubCategoriesIds = Array.from(new Set(subCategoriesIds));
 
-  const { data: subCategories } = useQuery("subCategoriesFull", () => getSubCategoriesFull(subCategoriesIds),
+  const { data: subCategories } = useQuery("subCategoriesFull", () => getSubCategoriesFull(uniqSubCategoriesIds),
     { enabled: !!subCategoriesIds });
 
   const { data: services } = useQuery("services", () => getServices());

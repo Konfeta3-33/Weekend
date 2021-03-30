@@ -2,9 +2,10 @@ import React from "react";
 
 import heart from "./img/Heart.svg"
 
-const FavoritesItem = ({ item: { name, image, id } }) => {
+const FavoritesItem = ({ item: { name, image, id }, redirectToService}) => {
     return (
-        <div className="flex flex-col w-40 mb-4 md:mr-4 cursor-pointer">
+        <div onClick={redirectToService}
+            className="flex flex-col w-40 mb-4 md:mr-4 cursor-pointer">
            <div className="relative shadow-drop mb-2.5 rounded-xl">
                 <img src={image} className="rounded-xl w-40"
                 style={{height: 120 }}/>
