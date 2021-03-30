@@ -29,7 +29,7 @@ const CollaborationForm = () => {
         <h1 className="text-xl font-semibold text-BlackGray text-center mb-5">Начать сотрудничество</h1>            
             <form onSubmit={handleSubmit(onSubmit)} className="px-7"> 
                 <p><Input
-                    name="yourCompanyName" 
+                    name="сompanyName" 
                     trigger={trigger}
                     register={register}
                     error={errors.сompanyName}
@@ -118,7 +118,7 @@ const CollaborationForm = () => {
                     Спасибо!
                 </div> 
                     <div className="flex justify-center">
-                        <Link to={`/`}>
+                        <Link to={`/collaboration`}>
                             <button
                                 className="py-2.5 px-6 rounded-10px text-white bg-Sea cursor-pointer hover:shadow-drop focus:outline-none"
                                 onClick={modelClose}
