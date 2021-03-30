@@ -39,7 +39,13 @@ const Order = ({ postOrder }) => {
         className="flex flex-col box-border order-form"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <input name="ServiceId" type="hidden" value={id} />
+
+        <Input
+          name="ServiceId"
+          value={id}
+          trigger={trigger}
+          register={register}
+        />
 
         <Input
           name="name"

@@ -10,6 +10,9 @@ const placeholderDict = {
         placeholder: "+7 - (xxx) - xxx - xx - xx",
         type: "tel",
     },
+    ServiceId: {
+        type: "hidden",
+    },
     date: {
         type: "date",
     },
