@@ -108,16 +108,20 @@ const Order = ({ postOrder }) => {
                     }}
                 />
 
-                <label className="mb-1.5 text-sm font-semibold">Адрес</label>
-                <select
-                    className="py-3 px-6 mb-4 text-DarkGreenForm font-medium border border-default rounded-10px focus:outline-none focus:border-Blue"
-                    name="address"
-                    ref={register}
-                >
-                    {Addresses?.map((item, idx) => (
-                        <option value={item.street} item={item} key={idx}>{item.street}</option>
-                    ))}
-                </select>
+                {Addresses.length !== 0 ? (
+                    <div className="flex flex-col mb-6">
+                    <label className="mb-1.5 text-sm font-semibold">Адрес</label>
+                        <select
+                            className="py-3 px-6 text-DarkGreenForm font-medium border border-default rounded-10px focus:outline-none focus:border-Blue"
+                            name="address"
+                            ref={register}
+                        >
+                            {Addresses?.map((item, idx) => (
+                                <option value={item.street} item={item} key={idx}>{item.street}</option>
+                            ))}
+                        </select>
+                    </div>
+                ) : null}
 
                 <Input
                     trigger={trigger}

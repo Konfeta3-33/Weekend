@@ -21,14 +21,16 @@ const Specific = ({ service }) => {
       <div className="mb-2.5">
         <span className="font-bold">Цена: </span> {price} руб.
       </div>
-      <div className="mb-2.5">
-        <span className="font-bold">Адрес: </span>
-        {Addresses?.map((item, idx) => (
-          <span className="mb-4 mr-2" item={item} key={idx}>
-            г. {item.city}, {item.street} <br/>
-          </span>
-        ))}
-      </div>
+      {Addresses.length !== 0 ? (
+        <div className="mb-2.5">
+          <span className="font-bold">Адрес: </span>
+          {Addresses?.map((item, idx) => (
+            <span className="mb-4 mr-2" item={item} key={idx}>
+              г. {item.city}, {item.street} <br />
+            </span>
+          ))}
+        </div>
+      ) : null}
       <div className="mb-2.5">
         <span className="font-bold">Часы работы: </span>
         <span className="lowercase">{worktime}</span>
