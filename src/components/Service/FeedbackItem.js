@@ -12,7 +12,7 @@ const FeedbackItem = ({ item }) => {
         <div className="flex flex-col justify-center">
           <div className="flex mb-2.5">
             {stars.map((item, idx) => (
-              idx + 1 <= rate ? <img src={fullStar} alt="fullStar"/> : <IconStar/>
+              idx + 1 <= rate ? <img src={fullStar} alt="fullStar" key={idx}/> : <IconStar key={idx}/>
             ))}
           </div>
           <div>

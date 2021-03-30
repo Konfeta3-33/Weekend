@@ -1,15 +1,12 @@
 import TagItem from "../Tags/TagItem";
 import IconStar from "./icons/IconStar";
-import IconStarFull from "./icons/IconStarFull";
+import fullStar from "../Service/img/star.svg";
 import { Link } from "react-router-dom";
 
 const Specific = ({ service }) => {
   const { id, Addresses, price, worktime, limits, rate, Tags } = service;
 
-  const stars = Array(rate).fill(<IconStar/>);
-
-  console.log(stars)
-  console.log(rate)
+  const stars = Array(5).fill(<span/>);
 
   return (
     <div
@@ -18,11 +15,9 @@ const Specific = ({ service }) => {
             className="w-44 py-2.5 px-4 mb-8 mt-5 rounded-10px self-center text-white text-base bg-Sea cursor-pointer hover:shadow-drop focus:outline-none"
       >Оставить заявку</Link>
       <div className="mb-2.5 flex">
-          {stars.map((item, idx) => (
-            <span item={item} key={idx}>
-              <IconStarFull/>
-            </span>
-          ))}
+        {stars.map((item, idx) => (
+          idx + 1 <= rate ? <img src={fullStar} className="mr-0.5" key={idx}/> : <IconStar key={idx} />
+        ))} 
       </div>
       <div className="mb-2.5">
         <span className="font-bold">Цена: </span> {price} руб.
