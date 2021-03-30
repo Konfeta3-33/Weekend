@@ -1,4 +1,5 @@
 import React, {useState, useCallback} from "react";
+import {useHistory} from 'react-router-dom';
 import "./Header.css";
 import {Collapse} from "react-collapse";
 import Menu from "../Menu";
@@ -17,12 +18,19 @@ import {useQuery} from 'react-query';
 import {getCategories} from '../../helpers/requests';
 
 const Header = ({ city, setCity }) => {
+
+  const history =  useHistory();
   const [menuActive, setMenuActive] = useState(false);
   const [searchValue, setSearchValue ] = useState('');
 
-  const { data: categories } = useQuery("categories", getCategories);
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setIsButtonCollapseOpen(!isButtonCollapseOpen);
+    history.push(`/services/${searchValue}`);
+    setSearchValue('');
+  }
 
-  const height = 35;
+  const { data: categories } = useQuery("categories", getCategories);
 
   const accessibilityIds = {
     button: 'accessible-marker',
@@ -49,12 +57,6 @@ const Header = ({ city, setCity }) => {
     [isButton3CollapseOpen]
   );
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setIsButtonCollapseOpen(!isButtonCollapseOpen);
-    setSearchValue('');
-  };
-
   return (
     <header className="mb-4">
       <div className="flex justify-between">
@@ -72,7 +74,7 @@ const Header = ({ city, setCity }) => {
             type="button">
             <img src={searchIcon} alt="search" className="inline-flex" style={{ width: 20 }}/>
           </button>
-          <a href="/favorites" className="">
+          <a href={"/favorites"} className="">
             <img src={favoriteIcon} alt="favorite" className="ml-4 inline-flex" style={{ width: 20 }}/>
           </a>
           <button
@@ -91,13 +93,13 @@ const Header = ({ city, setCity }) => {
                 aria-expanded={isButton2CollapseOpen}
                 onClick={onClick2}
                 type="button">
-                  { city ? city : 'Выбрать город'} 
+                  { city ? city : 'Выбрать город'}
                   {isButton2CollapseOpen ? <UpArrow/> : <DownArrow/>}
                 </button>
                 <Collapse
                   isOpened={isButton2CollapseOpen}>
                   <ul className="list-none" id={accessibilityIds.button2}>
-                    <li 
+                    <li
                       className="ml-2 cursor-pointer"
                       onClick={() => {
                         setCity("Москва");
@@ -169,16 +171,16 @@ const Header = ({ city, setCity }) => {
       </div>
       <div className="block px-4">
         <Collapse
-          isOpened={isButtonCollapseOpen} className="">
-          <div style={{height}} id={accessibilityIds.button} className="blob">
-            <form className="relative" onSubmit={(e) => handleSearch(e)}>
+          isOpened={isButtonCollapseOpen}>
+          <div style={{height: "35px"}} id={accessibilityIds.button} className="blob">
+            <form className="relative" onSubmit={handleSubmit}>
               <input
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                   type="text"
                   className="px-4 py-2 w-full bg-gray-100 rounded-md"
                   placeholder="Поиск"
-                  autoFocus={true}
+                  autoFocus={isButtonCollapseOpen}
               />
               <Close className="right-3 top-2 absolute" onClick={() => setSearchValue('')}/>
             </form>

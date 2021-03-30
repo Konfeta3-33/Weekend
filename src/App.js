@@ -18,6 +18,7 @@ import Footer from "./components/footer/Footer.js";
 import Header from "./components/header/Header";
 import Modal from "./components/Modal";
 import PopUp from "./components/PopUp";
+import SearchPage from './pages/SearchPage';
 
 const queryClient = new QueryClient()
 
@@ -59,6 +60,7 @@ function App() {
             <Route path="/order/:id" component={OrderPage} />
             <Route path="/favorites" component={Favorites}/>
             <Route path="/collaborationForm" component={CollaborationForm}/>
+            <Route path="/services/:name" component={SearchPage}/>
           </Switch>
           <Footer/>
         </Router>
