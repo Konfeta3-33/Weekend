@@ -11,8 +11,10 @@ const placeholderDict = {
         type: "tel",
     },
     date: {
-        placeholder: "Например: 19.03.2021 в 14:00",
         type: "date",
+    },
+    time: {
+        type: "time",
     },
     address: {
         placeholder: "Введите адрес",
