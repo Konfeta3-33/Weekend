@@ -29,7 +29,7 @@ const placeholderDict = {
         type: "number",
     },
     email: {
-        placeholder: "укажите вашу почту",
+        placeholder: "Укажите вашу почту",
         type: "text",
     },
     сompanyName: {

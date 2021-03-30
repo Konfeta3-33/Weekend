@@ -25,6 +25,8 @@ const Order = ({ postOrder }) => {
   if (!service) return null;
   const { Addresses } = service;
 
+  console.log("ServiceId", id);
+
   return (
     <div className="flex flex-col  box-border items-center mb-4">
       <div className="order-titleblock">
@@ -37,6 +39,8 @@ const Order = ({ postOrder }) => {
         className="flex flex-col box-border order-form"
         onSubmit={handleSubmit(onSubmit)}
       >
+        <input name="ServiceId" type="hidden" value={id} />
+
         <Input
           name="name"
           trigger={trigger}
@@ -90,65 +94,66 @@ const Order = ({ postOrder }) => {
           }}
         />
 
-        <Input
-          trigger={trigger}
-          name="date"
-          register={register}
-          title="дата"
-          error={errors.date}
-          required={{
-            required: true,
-            minLength: {
-              value: 2,
-              message: "не верно указана дата",
-            },
-          }}
-        />
-        <Input
-          trigger={trigger}
-          name="time"
-          register={register}
-          title="время"
-          error={errors.time}
-          required={{
-            required: true,
-            minLength: {
-              value: 2,
-              message: "не верно указано время",
-            },
-          }}
-        />
-
         {Addresses.length !== 0 ? (
-          <div className="flex flex-col mb-6">
-            <label className="mb-1.5 text-sm font-semibold">Адрес</label>
-            <select
-              className="py-3 px-6 text-DarkGreenForm font-medium border border-default rounded-10px focus:outline-none focus:border-Blue"
-              name="address"
-              ref={register}
-            >
-              {Addresses?.map((item, idx) => (
-                <option value={item.street} item={item} key={idx}>
-                  {item.street}
-                </option>
-              ))}
-            </select>
+          <div className="flex flex-col">
+            <Input
+              trigger={trigger}
+              name="date"
+              register={register}
+              title="дата"
+              error={errors.date}
+              required={{
+                required: true,
+                minLength: {
+                  value: 2,
+                  message: "не верно указана дата",
+                },
+              }}
+            />
+            <Input
+              trigger={trigger}
+              name="time"
+              register={register}
+              title="время"
+              error={errors.time}
+              required={{
+                required: true,
+                minLength: {
+                  value: 2,
+                  message: "не верно указано время",
+                },
+              }}
+            />
+
+            <div className="flex flex-col mb-6">
+              <label className="mb-1.5 text-sm font-semibold">Адрес</label>
+              <select
+                className="py-3 px-6 text-DarkGreenForm font-medium border border-default rounded-10px focus:outline-none focus:border-Blue"
+                name="address"
+                ref={register}
+              >
+                {Addresses?.map((item, idx) => (
+                  <option value={item.street} item={item} key={idx}>
+                    {item.street}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <Input
+              trigger={trigger}
+              name="persons"
+              register={register}
+              title="количество детей"
+            />
+            <Input
+              trigger={trigger}
+              name="parents"
+              register={register}
+              title="количество взрослых"
+            />
           </div>
         ) : null}
-
-        <Input
-          trigger={trigger}
-          name="persons"
-          register={register}
-          title="количество детей"
-        />
-
-        <Input
-          trigger={trigger}
-          name="parents"
-          register={register}
-          title="количество взрослых"
-        />
 
         <input
           type="submit"
