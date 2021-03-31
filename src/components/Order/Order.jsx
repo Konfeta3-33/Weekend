@@ -9,17 +9,17 @@ import IconCheckbox from "./icons/IconCheckbox.js";
 
 const Order = ({ postOrder }) => {
   const { register, handleSubmit, errors, trigger } = useForm();
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
+  const { id } = useParams();
 
-  const onSubmit = (newData) => {
-    postOrder(newData);
+  const onSubmit = (newData, id) => {
+    postOrder(newData, id);
   };
 
   const handleCheck = () => {
     setChecked(!checked);
   };
 
-  const { id } = useParams();
   const { data: service } = useQuery(["service", id], () => getServiceById(id));
 
   if (!service) return null;
@@ -39,14 +39,6 @@ const Order = ({ postOrder }) => {
         className="flex flex-col box-border order-form"
         onSubmit={handleSubmit(onSubmit)}
       >
-
-        <Input
-          name="ServiceId"
-          value={id}
-          trigger={trigger}
-          register={register}
-        />
-
         <Input
           name="name"
           trigger={trigger}
@@ -57,16 +49,19 @@ const Order = ({ postOrder }) => {
             required: true,
             minLength: {
               value: 2,
-              message: "поле должно быть заполнено",
+              message: "Вы не указали имя",
+            },
+            pattern: {
+              value: /^[a-zа-яё\s]+$/i,
+              message: "Имя должно содержать только буквы",
             },
           }}
         />
-
         <Input
           name="phone"
           trigger={trigger}
           register={register}
-          title="телефон"
+          title="Телефон"
           error={errors.phone}
           required={{
             required: true,
@@ -80,63 +75,51 @@ const Order = ({ postOrder }) => {
             },
             pattern: {
               value: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i,
-              message: "номер телефона кривой",
+              message: "номер телефона указан некорректно",
             },
           }}
         />
-
         <Input
           trigger={trigger}
           name="email"
           register={register}
-          title="почта"
+          title="Почта"
           error={errors.email}
           required={{
-            required: true,
+            required: false,
             pattern: {
               value: /^\S+@\S+$/i,
-              message: "не верно указана почта",
+              message: "Вы неверно указали почту",
             },
           }}
         />
 
         {Addresses.length !== 0 ? (
+
           <div className="flex flex-col">
             <Input
               trigger={trigger}
               name="date"
               register={register}
-              title="дата"
+              title="Дата и время"
               error={errors.date}
               required={{
-                required: true,
+                required: Addresses.length !== 0 ? true : false,
                 minLength: {
-                  value: 2,
-                  message: "не верно указана дата",
+                  value: 5,
+                  message: "Вы не указали время и дату",
                 },
               }}
             />
-            <Input
-              trigger={trigger}
-              name="time"
-              register={register}
-              title="время"
-              error={errors.time}
-              required={{
-                required: true,
-                minLength: {
-                  value: 2,
-                  message: "не верно указано время",
-                },
-              }}
-            />
-
             <div className="flex flex-col mb-6">
               <label className="mb-1.5 text-sm font-semibold">Адрес</label>
               <select
                 className="py-3 px-6 text-DarkGreenForm font-medium border border-default rounded-10px focus:outline-none focus:border-Blue"
                 name="address"
                 ref={register}
+                required={{
+                  required: false,
+                }}
               >
                 {Addresses?.map((item, idx) => (
                   <option value={item.street} item={item} key={idx}>
@@ -145,18 +128,33 @@ const Order = ({ postOrder }) => {
                 ))}
               </select>
             </div>
-
             <Input
               trigger={trigger}
               name="persons"
               register={register}
-              title="количество детей"
+              title="Количество и возраст детей"
+              error={errors.persons}
+              required={{
+                required: Addresses.length !== 0 ? true : false,
+                minLength: {
+                  value: 1,
+                  message: "Вы не указали данные",
+                },
+              }}
             />
             <Input
               trigger={trigger}
               name="parents"
               register={register}
-              title="количество взрослых"
+              title="Количество взрослых"
+              error={errors.parents}
+              required={{
+                required: Addresses.length !== 0 ? true : false,
+                minLength: {
+                  value: 1,
+                  message: "Вы не указали количество",
+                },
+              }}
             />
           </div>
         ) : null}
@@ -177,7 +175,7 @@ const Order = ({ postOrder }) => {
           <IconCheckbox checked={checked} />
         </label>
         <input type="checkbox" id="checkbox" className="hidden" />
-        <span className="order-checkbox__text">
+        <span className="order-checkbox__text ml-1">
           Ваши данные защищены. Нажимая на кнопку, вы даете согласие на
           обработку персональных данных и соглашаетесь с политикой
           конфиденциальности.

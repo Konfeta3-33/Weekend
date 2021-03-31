@@ -10,30 +10,25 @@ const placeholderDict = {
         placeholder: "+7 - (xxx) - xxx - xx - xx",
         type: "tel",
     },
-    ServiceId: {
-        type: "hidden",
-    },
     date: {
-        type: "date",
-    },
-    time: {
-        type: "time",
+        placeholder: "Например: 19.03.2021 в 14:00",
+        type: "datetime-local",
     },
     address: {
         placeholder: "Введите адрес",
         type: "text",
     },
     persons: {
-        placeholder: "Например: 2 ",
-        type: "number",
+        placeholder: "Например: 2 детей, 8 и 10 лет",
+        type: "text",
     },
     parents: {
         placeholder: "Например: 2",
-        type: "number",
+        type: "text",
     },
     email: {
         placeholder: "Укажите вашу почту",
-        type: "text",
+        type: "email",
     },
     сompanyName: {
         placeholder: "Введите название",
