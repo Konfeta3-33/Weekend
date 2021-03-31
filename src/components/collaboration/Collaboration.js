@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { CollaborationText } from "./CollaborationText";
 
 export const Collaboration = () => {
@@ -30,7 +30,7 @@ export const Collaboration = () => {
                <p className="text-sm font-semibold text-black text-opacity-80 mb-4">- Оплата вознаграждения только за конкретного клиента, записавшегося у нас на сервисе.</p>
             <div className="text-center">
                 <div className="max-w-sm py-2.5 bg-Sea rounded-lg text-center">
-                    <a href="/collaborationForm" className="font-medium text-base text-white">Начать сотрудничество</a>
+                    <Link to={`/collaborationForm`} className="font-medium text-base text-white">Начать сотрудничество</Link>
                 </div>
             </div>
             <button onClick={getSamples} className="focus:outline-none w-full max-w-sm my-5 rounded-lg border border-Sea font-medium text-base py-2 px-2.5">Получить образцы документов</button>             

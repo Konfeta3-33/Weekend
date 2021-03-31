@@ -1,6 +1,8 @@
 .swiper-container {
     overflow-y: visible;
     overflow-x: hidden;
+    margin-right: 1rem;
+    margin-left: 1rem;
 }
 
 .swiper-pagination-fraction,
