@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     Cookies.set("favorites", JSON.stringify(favorites), { expires: 10 });
   }, [favorites]);
-
+  
   return (
     <QueryClientProvider client={queryClient}>
       <React.StrictMode>
@@ -69,7 +69,7 @@ function App() {
             <Route path="/collaboration" component={Collaboration}/>
             <Route path="/contacts" component={Contacts}/>
             <Route path="/order/:id" component={OrderPage}/>
-            <Route path="/favorites" component={Favorites}/>
+            <Route path="/favorites" component={() => Favorites(toggleFavorites, favorites)}/>
             <Route path="/collaborationForm" component={CollaborationForm}/>
           </Switch>
           <Footer/>

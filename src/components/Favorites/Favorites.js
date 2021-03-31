@@ -7,14 +7,13 @@ import { useHistory } from "react-router-dom";
 import FavoritesEmpty from "./FavoritesEmpty";
 import CategoryItem from "../Category/CategoryItem";
 
-const Favorites = () => {
+const Favorites = ({toggleFavorites, favorites}) => {
   const [count, setCount] = useState(4); 
   const { data: services } = useQuery("services", () => getServices());
-  const [favorites, setFavorites] = useState(() => Cookies.getJSON("favorites") || []);
+  // const [favorites, setFavorites] = useState(() => Cookies.getJSON("favorites") || []);
   let history = useHistory();
-
   const favoriteFilter = services?.filter(({id}) => favorites?.includes(id));
-    console.log(favoriteFilter);
+    console.log(favorites);
 
    const onOpen = () => {
      if (count < favoriteFilter.length) {
@@ -22,12 +21,12 @@ const Favorites = () => {
      }
    };
 
-   const toggleFavorites = (event, item) => {
-    event.stopPropagation();
-    const alreadyFavorite = favorites.indexOf(item.id) > -1;
-    const newFavorites = alreadyFavorite ? favorites.filter((id) => id !== item.id) : [...favorites, item.id];
-    setFavorites(newFavorites);
-  };
+  //  const toggleFavorites = (event, item) => {
+  //   event.stopPropagation();
+  //   const alreadyFavorite = favorites.indexOf(item.id) > -1;
+  //   const newFavorites = alreadyFavorite ? favorites.filter((id) => id !== item.id) : [...favorites, item.id];
+  //   setFavorites(newFavorites);
+  // };
 
    const redirectToService = (item) => {
     history.push(`/service/${item.id}`);
