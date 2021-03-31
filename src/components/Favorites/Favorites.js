@@ -5,15 +5,15 @@ import { useQuery } from "react-query";
 import { getServices } from "../../helpers/requests";
 import { useHistory } from "react-router-dom";
 import FavoritesEmpty from "./FavoritesEmpty";
+import CategoryItem from "../Category/CategoryItem";
 
 const Favorites = () => {
   const [count, setCount] = useState(4); 
   const { data: services } = useQuery("services", () => getServices());
-  const cookiesId = Cookies.getJSON("favorites");
-
+  const [favorites, setFavorites] = useState(() => Cookies.getJSON("favorites") || []);
   let history = useHistory();
 
-  const favoriteFilter = services?.filter(({id}) => cookiesId?.includes(id));
+  const favoriteFilter = services?.filter(({id}) => favorites?.includes(id));
     console.log(favoriteFilter);
 
    const onOpen = () => {
@@ -22,15 +22,20 @@ const Favorites = () => {
      }
    };
 
+   const toggleFavorites = (event, item) => {
+    event.stopPropagation();
+    const alreadyFavorite = favorites.indexOf(item.id) > -1;
+    const newFavorites = alreadyFavorite ? favorites.filter((id) => id !== item.id) : [...favorites, item.id];
+    setFavorites(newFavorites);
+  };
+
    const redirectToService = (item) => {
     history.push(`/service/${item.id}`);
-    console.log("itemRedirect:", item);
   };
    
     return (
    <> 
-      {cookiesId &&
-        <div className="min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto flex flex-col text-center -mb-2.5">
+      <div className="min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto flex flex-col text-center -mb-2.5">
         <div className="bg-category sm:bg-Sea bg-no-repeat bg-cover bg-center">
           <div className="flex flex-wrap justify-center flex-col p-4">
             <div className="flex justify-center items-center w-60 mb-5 mx-auto mt-4">
@@ -46,20 +51,23 @@ const Favorites = () => {
                 </svg>
               </div>
             </div>
-            <div className="flex flex-wrap justify-between">
-              {favoriteFilter?.slice(0, count).map((item, id) => (
-                <FavoritesItem item={item} key={id} redirectToService={() => redirectToService(item)} />
-            ))}
-            </div>
-            <div>
-              <button onClick={onOpen} className="focus:outline-none rounded-xl border border-gray-50 w-20 text-center py-2.5 font-medium text-base text-gray-50">Еще</button>
-            </div>
+            {favorites  &&
+              <div>
+                <div className="flex flex-wrap justify-between">
+                  {favoriteFilter?.slice(0, count).map((item, id) => (
+                    <CategoryItem item={item} key={id} redirectToService={() => redirectToService(item)} toggleFavorites={(event) => toggleFavorites(event, item)}/>
+                ))}
+                </div>
+                <div>
+                  <button onClick={onOpen} className="focus:outline-none rounded-xl border border-gray-50 w-20 text-center py-2.5 font-medium text-base text-gray-50">Еще</button>
+                </div>
+              </div>
+             }
+             {(!favorites || favorites.length < 1) && 
+             <FavoritesEmpty />}
           </div>
         </div>
       </div>
- }
-{!cookiesId && 
-<FavoritesEmpty />}
    </>
     )
 };
