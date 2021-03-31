@@ -46,7 +46,7 @@ const Politics = () => {
             <p className="text-base font-medium text-BlackGray">8. Заключительные положения</p>
             <p className="text-base font-medium text-BlackGray">8.1. Пользователь может получить любые разъяснения по интересующим вопросам, касающимся обработки его персональных данных, обратившись к Оператору с помощью электронной почты weekendorg.ru@gmail.com.</p>
             <p className="text-base font-medium text-BlackGray">8.2. В данном документе будут отражены любые изменения политики обработки персональных данных Оператором. Политика действует бессрочно до замены ее новой версией.</p>
-            <p className="text-base font-medium text-BlackGray">8.3. Актуальная версия Политики в свободном доступе расположена в сети Интернет по адресу <a href="https://sdetmi.org/policypd">https://sdetmi.org/policypd</a>.</p>
+            <p className="text-base font-medium text-BlackGray">8.3. Актуальная версия Политики в свободном доступе расположена в сети Интернет по адресу <a href="/politics">https://sdetmi.org/politics</a>.</p>
         </div>
     )}
 

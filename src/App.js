@@ -20,12 +20,12 @@ import Modal from "./components/Modal";
 import PopUp from "./components/PopUp";
 import SearchPage from './pages/SearchPage';
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function App() {
   const [modalActive, setModalActive] = useState(false);
-  
   const [city, setCity] = useState(null);
+  const [favorites, setFavorites] = useState(() => Cookies.getJSON("favorites") || []);
 
   useEffect(() => {
     if (Cookies.getJSON("city") === void 0) {
@@ -36,28 +36,40 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (city !== null) {
+    if (city) {
       Cookies.set("city", city, { expires: 10 });
     }
   }, [city]);
+
+  const toggleFavorites = (event, item) => {
+    event.stopPropagation();
+    const alreadyFavorite = favorites.indexOf(item.id) > -1;
+    const newFavorites = alreadyFavorite ? favorites.filter((id) => id !== item.id) : [...favorites, item.id];
+    setFavorites(newFavorites);
+  };
+
+  useEffect(() => {
+    Cookies.set("favorites", JSON.stringify(favorites), { expires: 10 });
+  }, [favorites]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <React.StrictMode>
         <Router>
-          <Header city={city} setCity={setCity} />
+          <Header city={city} setCity={setCity}/>
           <Modal active={modalActive} setActive={setModalActive}>
-            <PopUp setActive={setModalActive} setCity={setCity} />
+            <PopUp setActive={setModalActive} setCity={setCity}/>
           </Modal>
           <Switch>
             <Route exact path="/" component={MainPage}/>
-            <Route path="/categories/:id" component={CategoryPage}/>
+            <Route path="/categories/:id"
+                   component={() => CategoryPage(toggleFavorites, favorites)}/>
             <Route path="/tags/:id" component={TagsPage}/>
-            <Route path="/service/:id" component={ServicePage}/>
+            <Route path="/service/:id" component={() => ServicePage(toggleFavorites, favorites)}/>
             <Route path="/politics" component={Politics}/>
             <Route path="/collaboration" component={Collaboration}/>
             <Route path="/contacts" component={Contacts}/>
-            <Route path="/order/:id" component={OrderPage} />
+            <Route path="/order/:id" component={OrderPage}/>
             <Route path="/favorites" component={Favorites}/>
             <Route path="/collaborationForm" component={CollaborationForm}/>
             <Route path="/services/:name" component={SearchPage}/>
@@ -70,4 +82,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
