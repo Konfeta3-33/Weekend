@@ -2,20 +2,21 @@ import React from "react";
 import {useParams} from 'react-router-dom';
 import {useQuery} from 'react-query';
 import {searchByName} from '../helpers/requests';
-import SubCategories from '../components/SubCategories';
+import CategoryItem from '../components/Category/CategoryItem';
 
 const SearchPage = () => {
 
   const {name} = useParams();
-  const {status, data: categories} = useQuery(
+  const {status, data: services} = useQuery(
       ["services", name],
       () => searchByName(name));
 
   return (
       <>
         {status === "loading" && <p>Fetching data...</p>}
-        {console.log(categories)}
-        {status === "success" && (<SubCategories subCategories={categories}/>)}
+        {status === "success" && services?.map((item, idx) => (
+            <CategoryItem key={idx} item={item}/>
+        ))}
       </>
   )
 }
