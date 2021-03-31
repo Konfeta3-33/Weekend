@@ -2,10 +2,9 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getServiceById } from "../helpers/requests";
-import Specific from "../components/Specific";
 import Service from "../components/Service";
 
-const ServicePage = () => {
+const ServicePage = (toggleFavorites, favorites) => {
   const { id } = useParams();
   const { data: service } = useQuery(["service", id], () => getServiceById(id));
 
@@ -15,7 +14,7 @@ const ServicePage = () => {
   return (
     <>
       <h2 className="px-16 mb-5 text-xl font-semibold text-center">{name}</h2>
-      <Service service={service}/>
+      <Service service={service} toggleFavorites={toggleFavorites} favorites={favorites}/>
     </>
   );
 };
