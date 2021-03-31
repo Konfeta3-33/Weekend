@@ -54,7 +54,7 @@ const Favorites = ({toggleFavorites, favorites}) => {
               <div>
                 <div className="flex flex-wrap justify-between">
                   {favoriteFilter?.slice(0, count).map((item, id) => (
-                    <CategoryItem item={item} key={id} redirectToService={() => redirectToService(item)} toggleFavorites={(event) => toggleFavorites(event, item)}/>
+                    <CategoryItem item={item} key={id} favorites={favorites} redirectToService={() => redirectToService(item)} toggleFavorites={(event) => toggleFavorites(event, item)}/>
                 ))}
                 </div>
                 <div>
