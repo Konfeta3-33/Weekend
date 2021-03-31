@@ -43,14 +43,16 @@ export const getSubCategoriesFull = (arrIds) => {
 export const getServices = () => getData(`${baseUrl}/api/services`);
 export const searchByName = (name) => getData(`${baseUrl}/api/services/?name=${name}`);
 
-export const postOrder = async (data) => {
+export const postOrder = async (data, id) => {
   const query = {
-    name: data.name,
     status: "new",
+    id: id,
+    name: data.name,
+    email: data.email,
     phone: data.phone,
     date: data.date,
+    address: data.address,
     persons: data.persons,
-    email: data.email,
     description: data.parents,
   };
 
