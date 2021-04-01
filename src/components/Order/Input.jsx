@@ -12,23 +12,23 @@ const placeholderDict = {
     },
     date: {
         placeholder: "Например: 19.03.2021 в 14:00",
-        type: "date",
+        type: "datetime-local",
     },
     address: {
         placeholder: "Введите адрес",
         type: "text",
     },
     persons: {
-        placeholder: "Например: 2 ",
-        type: "number",
+        placeholder: "Например: 2 детей, 8 и 10 лет",
+        type: "text",
     },
     parents: {
         placeholder: "Например: 2",
-        type: "number",
+        type: "text",
     },
     email: {
-        placeholder: "укажите вашу почту",
-        type: "text",
+        placeholder: "Укажите вашу почту",
+        type: "email",
     },
     сompanyName: {
         placeholder: "Введите название",

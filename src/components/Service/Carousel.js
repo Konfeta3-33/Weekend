@@ -28,7 +28,7 @@ const Carousel = ({ service, toggleFavorites, favorites }) => {
             alt={item.name}
           />
           <button onClick={(event) => toggleFavorites(event, service)}
-                  className="absolute top-40 right-2 s:top-48 s:right-2 focus:outline-none">
+                  className="absolute top-40 right-2 s:top-48 s:right-2 focus:outline-none md:right-14 md:top-96">
             <img src={favorites?.includes(id) ? heartFull : heart}
                  style={{ width: 19, height: 17 }}/>
           </button>
