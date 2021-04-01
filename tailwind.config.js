@@ -42,6 +42,7 @@ module.exports = {
       },
       boxShadow: {
         drop: "0 4px 4px rgba(0, 0, 0, 0.25)",
+        dropItem: "0 4px 6px -1px rgba(0, 0, 0, 0.7), 0 2px 4px -1px rgba(0, 0, 0, 0.3)",
       },
       minWidth: {
         14: "60px",
