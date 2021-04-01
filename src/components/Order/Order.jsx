@@ -12,20 +12,24 @@ const Order = ({ postOrder }) => {
   const [checked, setChecked] = useState(true);
   const { id } = useParams();
 
-  const onSubmit = (newData, id) => {
-    postOrder(newData, id);
-  };
-
-  const handleCheck = () => {
-    setChecked(!checked);
-  };
-
   const { data: service } = useQuery(["service", id], () => getServiceById(id));
 
   if (!service) return null;
   const { Addresses } = service;
 
-  console.log("ServiceId", id);
+  const onSubmit = async (newData) => {
+    let result = null;
+    if (Addresses) {
+      result = await trigger(["name", "phone"]);
+    } else {
+      result = await trigger(["name", "phone", "date"]);
+    }
+    if (result) postOrder(newData, id);
+  };
+
+  const handleCheck = () => {
+    setChecked(!checked);
+  };
 
   return (
     <div className="flex flex-col  box-border items-center mb-4">
@@ -43,12 +47,16 @@ const Order = ({ postOrder }) => {
           name="name"
           trigger={trigger}
           register={register}
-          error={errors.name}
           title="Имя"
+          error={errors.name}
           required={{
-            required: true,
+            required: "Данное поле обязательно для заполнения",
+            maxLength: {
+              value: 30,
+              message: "Имя слишком длинное",
+            },
             minLength: {
-              value: 2,
+              value: 3,
               message: "Вы не указали имя",
             },
             pattern: {
@@ -64,18 +72,18 @@ const Order = ({ postOrder }) => {
           title="Телефон"
           error={errors.phone}
           required={{
-            required: true,
+            required: "Данное поле обязательно для заполнения",
             minLength: {
               value: 10,
-              message: "номер телефона слишком короткий",
+              message: "Номер телефона слишком короткий",
             },
             maxLength: {
               value: 18,
-              message: "номер телефона слишком длинный",
+              message: "Номер телефона слишком длинный",
             },
             pattern: {
               value: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i,
-              message: "номер телефона указан некорректно",
+              message: "Вы не верно указали телефон",
             },
           }}
         />
@@ -93,9 +101,7 @@ const Order = ({ postOrder }) => {
             },
           }}
         />
-
         {Addresses.length !== 0 ? (
-
           <div className="flex flex-col">
             <Input
               trigger={trigger}
@@ -104,7 +110,7 @@ const Order = ({ postOrder }) => {
               title="Дата и время"
               error={errors.date}
               required={{
-                required: Addresses.length !== 0 ? true : false,
+                required: Addresses.length !== 0 ? "Данное поле обязательно для заполнения" : false,
                 minLength: {
                   value: 5,
                   message: "Вы не указали время и дату",
@@ -130,12 +136,12 @@ const Order = ({ postOrder }) => {
             </div>
             <Input
               trigger={trigger}
-              name="persons"
+              name="children"
               register={register}
               title="Количество и возраст детей"
               error={errors.persons}
               required={{
-                required: Addresses.length !== 0 ? true : false,
+                required: false,
                 minLength: {
                   value: 1,
                   message: "Вы не указали данные",
@@ -149,7 +155,7 @@ const Order = ({ postOrder }) => {
               title="Количество взрослых"
               error={errors.parents}
               required={{
-                required: Addresses.length !== 0 ? true : false,
+                required: false,
                 minLength: {
                   value: 1,
                   message: "Вы не указали количество",
@@ -172,9 +178,9 @@ const Order = ({ postOrder }) => {
       </form>
       <div className="order-checkbox">
         <label htmlFor="checkbox" onClick={handleCheck}>
-          <IconCheckbox checked={checked} />
+          <IconCheckbox checked={checked}/>
         </label>
-        <input type="checkbox" id="checkbox" className="hidden" />
+        <input type="checkbox" id="checkbox" className="hidden"/>
         <span className="order-checkbox__text ml-1">
           Ваши данные защищены. Нажимая на кнопку, вы даете согласие на
           обработку персональных данных и соглашаетесь с политикой
