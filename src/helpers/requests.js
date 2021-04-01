@@ -21,10 +21,11 @@ const postData = async (url, data) => {
     },
     body: JSON.stringify(data),
   });
-
-  const result = await response.json();
-
-  return result;
+  if (response.ok) {
+    return await response.json();
+  } else {
+    return response.json();
+  }
 };
 
 export const getCategories = () => getData(`${baseUrl}/api/categories`);
@@ -45,15 +46,15 @@ export const searchByName = (name) => getData(`${baseUrl}/api/services/?name=${n
 
 export const postOrder = async (data, id) => {
   const query = {
-    status: "new",
-    id: id,
     name: data.name,
-    email: data.email,
+    status: "new",
+    persons: data.children || "",
+    description: data.adults || "",
+    ServiceId: Number(id),
     phone: data.phone,
-    date: data.date,
-    address: data.address,
-    persons: data.persons,
-    description: data.parents,
+    date: data.date || new Date(),
+    email: data.email || "",
+    address: data.address || "",
   };
 
   const result = await postData(`${baseUrl}/api/invoices`, query);
@@ -62,7 +63,7 @@ export const postOrder = async (data, id) => {
 
 export const postCollaborationForm = async (data) => {
   const queryCollaborationForm = {
-    сompanyName: data.сompanyName,
+    company: data.company,
     name: data.name,
     status: "new",
     phone: data.phone,

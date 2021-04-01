@@ -29,10 +29,10 @@ const CollaborationForm = () => {
         <h1 className="text-xl font-semibold text-BlackGray text-center mb-5">Начать сотрудничество</h1>            
             <form onSubmit={handleSubmit(onSubmit)} className="px-7"> 
                 <p><Input
-                    name="сompanyName" 
+                    name="company"
                     trigger={trigger}
                     register={register}
-                    error={errors.сompanyName}
+                    error={errors.company}
                     title="Название Вашей компании"
                     required={{
                         required: true,
