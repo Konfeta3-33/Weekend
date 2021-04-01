@@ -3,15 +3,22 @@ import RectLeftWhite from "../components/Category/images/main/RectLeftWhite";
 import RectRightWhite from "../components/Category/images/main/RectRightWhite";
 import CategoryItem from "../components/Category/CategoryItem";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getTagById } from "../helpers/requests";
 
-const TagsPage = () => {
+const TagsPage = (toggleFavorites, favorites) => {
+  
+  let history = useHistory();
+
   const { id } = useParams();
   const { data: tag } = useQuery(["tag", id], () => getTagById(id));
 
   if (!tag) return null;
   const { name, Services, Group: { color } } = tag;
+
+  const redirectToService = (item) => {
+    history.push(`/service/${item.id}`);
+  };
 
   return (
     <>
@@ -30,7 +37,7 @@ const TagsPage = () => {
             </div>
             <div className="flex flex-wrap justify-between">
               {Services.map((item, idx) => (
-                <CategoryItem item={item} key={idx}/>
+                <CategoryItem item={item} key={idx} favorites={favorites} toggleFavorites={(event) => toggleFavorites(event, item)} redirectToService={() => redirectToService(item)}/>
               ))}
             </div>
           </div>

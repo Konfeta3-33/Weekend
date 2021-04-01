@@ -63,7 +63,7 @@ function App() {
             <Route exact path="/" component={MainPage}/>
             <Route path="/categories/:id"
                    component={() => CategoryPage(toggleFavorites, favorites)}/>
-            <Route path="/tags/:id" component={TagsPage}/>
+            <Route path="/tags/:id" component={() => TagsPage(toggleFavorites, favorites)}/>
             <Route path="/service/:id" component={() => ServicePage(toggleFavorites, favorites)}/>
             <Route path="/politics" component={Politics}/>
             <Route path="/collaboration" component={Collaboration}/>
