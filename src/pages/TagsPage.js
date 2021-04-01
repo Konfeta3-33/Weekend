@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 import { useParams, useHistory } from "react-router-dom";
 import { getTagById } from "../helpers/requests";
 
-const TagsPage = ({ toggleFavorites, favorites }) => {
+const TagsPage = (toggleFavorites, favorites) => {
   
   let history = useHistory();
 
