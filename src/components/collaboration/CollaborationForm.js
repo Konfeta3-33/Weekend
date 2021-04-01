@@ -53,7 +53,6 @@ const CollaborationForm = () => {
                      title="Имя"
                      required={{
                          required: true,
- 
                          minLength: {
                              value: 2,
                              message: "поле должно быть заполнено",
@@ -68,6 +67,14 @@ const CollaborationForm = () => {
                      error={errors.phone}
                      required={{
                          required: true,
+                         minLength: {
+                            value: 10,
+                            message: "номер телефона слишком короткий",
+                        },
+                        maxLength: {
+                            value: 12,
+                            message: "номер телефона слишком длинный",
+                        },
                          pattern: {
                              value: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i,
                              message: "номер телефона кривой",

@@ -65,6 +65,7 @@ module.exports = {
     screens: {
       "xs": "320px",
       "s": "375px",
+      "md": "768px",
       ...defaultTheme.screens,
     },
     variants: {
