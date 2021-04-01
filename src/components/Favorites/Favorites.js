@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import FavoritesItem from "./FavoritesItem";
 import Cookies from "js-cookie";
 import { useQuery } from "react-query";
 import { getServices } from "../../helpers/requests";
@@ -7,11 +6,12 @@ import { useHistory } from "react-router-dom";
 import FavoritesEmpty from "./FavoritesEmpty";
 import CategoryItem from "../Category/CategoryItem";
 
-const Favorites = ({toggleFavorites, favorites}) => {
+const Favorites = (toggleFavorites, favorites) => {
   const [count, setCount] = useState(4); 
   const { data: services } = useQuery("services", () => getServices());
   // const [favorites, setFavorites] = useState(() => Cookies.getJSON("favorites") || []);
   let history = useHistory();
+
   const favoriteFilter = services?.filter(({id}) => favorites?.includes(id));
     console.log(favorites);
 
@@ -50,6 +50,8 @@ const Favorites = ({toggleFavorites, favorites}) => {
                 </svg>
               </div>
             </div>
+            {(!favorites || favorites.length < 1) && 
+             <FavoritesEmpty />}
             {favorites  &&
               <div>
                 <div className="flex flex-wrap justify-between">
@@ -62,8 +64,6 @@ const Favorites = ({toggleFavorites, favorites}) => {
                 </div>
               </div>
              }
-             {(!favorites || favorites.length < 1) && 
-             <FavoritesEmpty />}
           </div>
         </div>
       </div>

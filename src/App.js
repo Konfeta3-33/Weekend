@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     Cookies.set("favorites", JSON.stringify(favorites), { expires: 10 });
   }, [favorites]);
-  
+
   return (
     <QueryClientProvider client={queryClient}>
       <React.StrictMode>
