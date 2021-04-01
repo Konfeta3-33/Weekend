@@ -12,12 +12,12 @@ import Politics from "./components/politics/Politics.js";
 import Collaboration from "./components/collaboration/Collaboration.js";
 import Contacts from "./components/contacts/Contacts.js";
 import OrderPage from "./pages/OrderPage";
-import Favorites from "./components/Favorites/Favorites.js";
 import CollaborationForm from "./components/collaboration/CollaborationForm.js";
 import Footer from "./components/footer/Footer.js";
 import Header from "./components/header/Header";
 import Modal from "./components/Modal";
 import PopUp from "./components/PopUp";
+import Favorites from "./components/Favorites";
 
 const queryClient = new QueryClient();
 
@@ -69,7 +69,7 @@ function App() {
             <Route path="/collaboration" component={Collaboration}/>
             <Route path="/contacts" component={Contacts}/>
             <Route path="/order/:id" component={OrderPage}/>
-            <Route path="/favorites" component={() => Favorites(toggleFavorites, favorites)}/>
+            <Route path="/favorites" component={() => <Favorites toggleFavorites={toggleFavorites} favorites={favorites}/>}/>
             <Route path="/collaborationForm" component={CollaborationForm}/>
           </Switch>
           <Footer/>
