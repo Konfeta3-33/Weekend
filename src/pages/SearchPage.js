@@ -6,7 +6,7 @@ import {useQuery} from 'react-query';
 import {searchByName} from '../helpers/requests';
 import CategoryItem from '../components/Category/CategoryItem';
 
-const SearchPage = ({toggleFavorites, favorites}) => {
+const SearchPage = (toggleFavorites, favorites) => {
 
   const [isResult, setIsResult] = useState(false);
   let history = useHistory();
