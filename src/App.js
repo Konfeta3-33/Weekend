@@ -72,7 +72,7 @@ function App() {
             <Route path="/order/:id" component={OrderPage}/>
             <Route path="/favorites" component={Favorites}/>
             <Route path="/collaborationForm" component={CollaborationForm}/>
-            <Route path="/services/:name" component={SearchPage}/>
+            <Route path="/services/:name" component={() => SearchPage(toggleFavorites, favorites)}/>
           </Switch>
           <Footer/>
         </Router>
