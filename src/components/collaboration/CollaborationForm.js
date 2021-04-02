@@ -105,7 +105,7 @@ const CollaborationForm = () => {
                     required={{
                         required: true,
                         pattern: {
-                            value: /^\S+@\S+$/i,
+                            value: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
                             message: "Некорректно введен e-mail",
                         },
                     }}
