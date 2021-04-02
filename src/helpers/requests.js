@@ -48,13 +48,13 @@ export const postOrder = async (data, id) => {
   const query = {
     name: data.name,
     status: "new",
-    persons: data.children || "",
-    description: data.adults || "",
+    persons: data.children || null,
+    description: data.adults || null,
     ServiceId: Number(id),
     phone: data.phone,
     date: data.date || new Date(),
-    email: data.email || "",
-    address: data.address || "",
+    email: data.email || null,
+    address: data.address || null,
   };
 
   const result = await postData(`${baseUrl}/api/invoices`, query);

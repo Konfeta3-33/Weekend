@@ -18,7 +18,7 @@ const CategoryItem = ({
               className="absolute top-24 right-2 s:top-24 s:right-2 focus:outline-none">
         <img src={favorites?.includes(id) ? heartFull : heart} style={{ width: 19, height: 17 }}/>
       </button>
-      <h2 className="text-white w-full text-xs md:text-base font-medium">{name}</h2>
+      <h2 className="text-white w-full text-base md:text-base font-medium">{name}</h2>
     </div>) : null;
 };
 
