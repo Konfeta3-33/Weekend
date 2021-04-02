@@ -17,6 +17,7 @@ import Footer from "./components/footer/Footer.js";
 import Header from "./components/header/Header";
 import Modal from "./components/Modal";
 import PopUp from "./components/PopUp";
+import SearchPage from './pages/SearchPage';
 import Favorites from "./components/Favorites";
 
 const queryClient = new QueryClient();
@@ -71,6 +72,7 @@ function App() {
             <Route path="/order/:id" component={OrderPage}/>
             <Route path="/favorites" component={() => <Favorites toggleFavorites={toggleFavorites} favorites={favorites}/>}/>
             <Route path="/collaborationForm" component={CollaborationForm}/>
+            <Route path="/services/:name" component={() => SearchPage(toggleFavorites, favorites)}/>
           </Switch>
           <Footer/>
         </Router>
