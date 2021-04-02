@@ -71,5 +71,5 @@ const Favorites = (toggleFavorites, favorites) => {
     )
 };
 
-export default React.memo(Favorites);
+export default Favorites;
 
