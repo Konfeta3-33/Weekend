@@ -111,10 +111,10 @@ const Order = ({ postOrder }) => {
               error={errors.date}
               required={{
                 required: Addresses.length !== 0 ? "Данное поле обязательно для заполнения" : false,
-                minLength: {
-                  value: 5,
-                  message: "Вы не указали время и дату",
-                },
+                // minLength: {
+                //   value: 5,
+                //   message: "Вы не указали время и дату",
+                // },
               }}
             />
             <div className="flex flex-col mb-6">
