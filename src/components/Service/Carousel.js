@@ -23,7 +23,7 @@ const Carousel = ({ service, toggleFavorites, favorites }) => {
           virtualIndex={idx}
         >
           <img
-            className="img"
+            className="object-contain md:object-scale-down m-auto"
             src={`${baseUrl}/images/${item.name}`}
             alt={item.name}
           />
