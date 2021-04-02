@@ -4,6 +4,7 @@ import { getServices } from "../../helpers/requests";
 import { useHistory } from "react-router-dom";
 import FavoritesEmpty from "./FavoritesEmpty";
 import CategoryItem from "../Category/CategoryItem";
+import { Helmet } from "react-helmet";
 
 const Favorites = ({ toggleFavorites, favorites }) => {
   const [count, setCount] = useState(4);
@@ -24,6 +25,10 @@ const Favorites = ({ toggleFavorites, favorites }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Топ мест отдыха с детьми</title>
+        <meta name="description" content="Избранные места отдыха"/>
+      </Helmet>
       <div
         className="min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto flex flex-col text-center -mb-2.5">
         <div className="bg-category sm:bg-Sea bg-no-repeat bg-cover bg-center">

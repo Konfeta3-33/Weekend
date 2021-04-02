@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { postOrder } from "../helpers/requests";
 import Order from "../components/Order/Order";
 import Modal from "../components/Modal";
+import { Helmet } from "react-helmet";
 
 const OrderPage = () => {
   const history = useHistory();
@@ -41,6 +42,9 @@ const OrderPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Мероприятия_форма заявки</title>
+      </Helmet>
       <Order postOrder={handlePostOrder}/>
       <Modal active={active} setActive={handleSetActiveModal}>
         <div className="max-w-60 py-5 text-center text-base font-medium">
