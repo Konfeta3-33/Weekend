@@ -9,6 +9,7 @@ import {
   getSubCategoriesFull,
 } from "../helpers/requests";
 import Cookies from "js-cookie";
+import { Helmet } from "react-helmet";
 
 const CategoryPage = (toggleFavorites, favorites) => {
   const { id } = useParams();
@@ -44,6 +45,10 @@ const CategoryPage = (toggleFavorites, favorites) => {
 
   return (
     <>
+      <Helmet>
+        <title>В выходной ребенок дома? Топ лучших идей, чем можно заняться</title>
+        <meta name="description" content="Все детские развлечения. Дома с ребенком"/>
+      </Helmet>
       <SubCategories subCategories={subCategories} filterSubCategories={filterForSubCategory}/>
       <Category category={category} filteredCategory={filteredCategory} toggle={toggle}
                 toggleFavorites={toggleFavorites} favorites={favorites}

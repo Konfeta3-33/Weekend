@@ -37,7 +37,7 @@ function App() {
 
   useEffect(() => {
     if (city) {
-      Cookies.set("city", city, { expires: 10 });
+      Cookies.set("city", city, { expires: 180 });
     }
   }, [city]);
 
@@ -49,7 +49,7 @@ function App() {
   };
 
   useEffect(() => {
-    Cookies.set("favorites", JSON.stringify(favorites), { expires: 10 });
+    Cookies.set("favorites", JSON.stringify(favorites), { expires: 180 });
   }, [favorites]);
 
   return (

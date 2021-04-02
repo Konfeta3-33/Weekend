@@ -7,8 +7,8 @@ const Service = ({ service, toggleFavorites, favorites }) => {
 
   return (
     <div>
-      <Carousel service={service} toggleFavorites={toggleFavorites} favorites={favorites}/>
-      <Specific service={service}/>
+      <Carousel service={service}/>
+      <Specific service={service} toggleFavorites={toggleFavorites} favorites={favorites}/>
       <Description service={service}/>
     </div>
   );
