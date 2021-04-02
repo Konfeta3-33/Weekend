@@ -14,7 +14,7 @@ const Specific = ({ service, toggleFavorites, favorites }) => {
   return (
     <div
       className="px-4 mb-5 flex flex-col min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto md:w-2/3 xl:w-1/2">
-      <div className="flex mb-8 mt-5 justify-center">
+      <div className="flex mb-8 mt-5 ml-12 justify-center">
         <Link to={`/order/${id}`}
               className="w-44 py-1.5 px-4 mr-5 font-semibold block rounded-10px self-center text-center text-white text-sm bg-Sea cursor-pointer hover:shadow-drop focus:outline-none"
         >Получить консультацию</Link>
