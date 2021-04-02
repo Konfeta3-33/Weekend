@@ -13,7 +13,7 @@ const Specific = ({ service }) => {
       className="px-4 mb-5 flex flex-col min-w-320 s:w-full sm:w-full md:w-full xl:w-full mx-auto md:w-2/3 xl:w-1/2">
       <Link to={`/order/${id}`}
             className="w-44 py-2.5 px-4 mb-8 mt-5 rounded-10px self-center text-white text-base bg-Sea cursor-pointer hover:shadow-drop focus:outline-none"
-      >Оставить заявку</Link>
+      >Обратный звонок</Link>
       <div className="mb-2.5 flex">
         {stars.map((item, idx) => (
           idx + 1 <= rate ? <img src={fullStar} className="mr-0.5" key={idx}/> : <IconStar key={idx} />
