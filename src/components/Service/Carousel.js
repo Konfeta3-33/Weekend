@@ -22,7 +22,7 @@ const Carousel = ({ service }) => {
           virtualIndex={idx}
         >
           <img
-            className="img"
+            className="object-contain md:object-scale-down m-auto"
             src={`${baseUrl}/images/${item.name}`}
             alt={item.name}
           />
