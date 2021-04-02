@@ -36,11 +36,18 @@ const CollaborationForm = () => {
                     title="Название Вашей компании"
                     required={{
                         required: true,
-
+                        maxLength: {
+                            value: 30,
+                            message: "Название слишком длинное",
+                          },
                         minLength: {
                             value: 2,
                             message: "поле должно быть заполнено",
                         },
+                        pattern: {
+                            value: /^[a-zа-яё\s]+$/i,
+                            message: "Имя должно содержать только буквы",
+                          },
                     }}
                 />
                 
@@ -53,10 +60,18 @@ const CollaborationForm = () => {
                      title="Имя"
                      required={{
                          required: true,
+                         maxLength: {
+                            value: 30,
+                            message: "Имя слишком длинное",
+                          },
                          minLength: {
                              value: 2,
                              message: "поле должно быть заполнено",
                          },
+                         pattern: {
+                            value: /^[a-zа-яё\s]+$/i,
+                            message: "Некорректно заполнено поле",
+                        },
                      }}
                 /></p>
                 <p><Input 
@@ -68,16 +83,16 @@ const CollaborationForm = () => {
                      required={{
                          required: true,
                          minLength: {
-                            value: 10,
+                            value: 9,
                             message: "номер телефона слишком короткий",
                         },
                         maxLength: {
-                            value: 12,
+                            value: 13,
                             message: "номер телефона слишком длинный",
                         },
                          pattern: {
                              value: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i,
-                             message: "номер телефона кривой",
+                             message: "Некорректно введен номер",
                          },
                      }}
                 /></p>
@@ -90,8 +105,8 @@ const CollaborationForm = () => {
                     required={{
                         required: true,
                         pattern: {
-                            value: /^\S+@\S+$/i,
-                            message: "не верно указана почта",
+                            value: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+                            message: "Некорректно введен e-mail",
                         },
                     }}
                 /></p>
